@@ -21,4 +21,6 @@ urlpatterns = [
     path('smoke/', include("smoke.urls")),
     path('routing/', include("routing.urls")),
     path('templates/', include("templates.urls")),
+    path('models/', include("models.urls")),
+    path('admin/', admin.site.urls),
 ]

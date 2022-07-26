@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'smoke',
     'routing',
     'templates',
+    'models',
 ]
 
 MIDDLEWARE = [

@@ -14,6 +14,7 @@ def index(request):
             <p><a href="/smoke">001. Smoke</a></p>
             <p><a href="/routing">002. Routing</a></p>
             <p><a href="/templates">003. Templates</a></p>
+            <p><a href="/models">004. Models</a></p>
         </body>
     </html>
     """
