@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('', include("index.urls")),
     path('smoke/', include("smoke.urls")),
+    path('routing/', include("routing.urls")),
 ]

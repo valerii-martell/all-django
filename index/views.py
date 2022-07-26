@@ -12,9 +12,9 @@ def index(request):
         <body>
             <h1>Index:</h1>
             <p><a href="/smoke">001. Smoke</a></p>
+            <p><a href="/routing">002. Routing</a></p>
         </body>
     </html>
     """
 
     return HttpResponse(_html)
-
