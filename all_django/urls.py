@@ -20,4 +20,5 @@ urlpatterns = [
     path('', include("index.urls")),
     path('smoke/', include("smoke.urls")),
     path('routing/', include("routing.urls")),
+    path('templates/', include("templates.urls")),
 ]

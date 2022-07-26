@@ -1,0 +1,95 @@
+{% load poll_extras %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FOR</title>
+</head>
+<body>
+List:
+<ul>
+{% for elem in list %}
+    <li>{{elem}}</li>
+    {% endfor %}
+</ul>
+<h1>Variables of the for loop:</h1>
+<h2>forloop.counter</h2>
+{% for item in list %}
+    <p>{{ forloop.counter }} : {{ item }}</p>
+{% endfor %}
+<hr>
+<h2>forloop.counter0</h2>
+{% for item in list %}
+    <p>{{ forloop.counter0 }}: {{ item }}</p>
+{% endfor %}
+<hr>
+<h2>forloop.revcounter</h2>
+{% for item in list %}
+ <p>{{ forloop.revcounter }}: {{ item }}</p>
+{% endfor %}
+<hr>
+<h2>forloop.revcounter0</h2>
+{% for item in list %}
+ <p>{{ forloop.revcounter0 }}: {{ item }}</p>
+{% endfor %}
+
+<h2>forloop.first</h2>
+{% for item in list %}
+ <p>{{ forloop.first }}: {{ item }}</p>
+{% endfor %}
+<hr>
+<h2>forloop.last</h2>
+{% for item in list %}
+ <p>{{ forloop.last }}: {{ item }}</p>
+{% endfor %}
+<hr>
+<h2>{ if not forloop.last }|{ endif }</h2>
+{% for item in list %}
+<span>{{ item }}</span>
+ <span>{% if not forloop.last %}|{% endif %}</span>
+{% endfor %}
+<hr>
+<h2>Проверка на пустоту!</h2>
+{% if list %}
+    {%for elem in list %}
+        <p>{{elem}}</p>
+    {% endfor %}
+    {% else %}
+<p>EMPTY!</p>
+{% endif %}
+<hr>
+<h2>Тег empty</h2>
+    {%for elem in empty %}
+        <p>{{elem}}</p>
+    {% empty %}
+        <p>IS EMPTY!</p>
+    {% endfor %}
+
+
+
+{% comment %}
+    <p>Commented out text</p>
+{% endcomment %}
+
+<hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span> Мой тег minusone :</span>
+    {% minusone -10 %}
+<br>
+<span> Мой тег minustwo :</span>
+    {% minustwo 15 %}
+
+</body>
+</html>

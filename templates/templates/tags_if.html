@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tags</title>
+    <style>
+        h2 {
+            color: red;
+            text-decoration: underline;
+        }
+
+        span {
+            color: blue;
+            font-size: 32px;
+        }
+    </style>
+</head>
+<body>
+<h1>Tags</h1>
+<h2>if/else</h2>
+{% if user %}
+    <h4>{{ user }}</h4>
+{% endif %}
+
+
+
+{% if  list %}
+    <!--<span>List is empty!</span>-->
+    <p>{{ list }}</p>
+{% endif %}
+
+{% if list or some_var %}
+    <span>There are some list or  some_var.</span>
+{% endif %}
+
+<h3>Nested IF!</h3>
+{% if list %}
+    {% if list|length != 2 %}
+        <p>{{ list }}</p>
+    {% endif %}
+{% endif %}
+
+<h3>Operators ==, !=, <, >, >=, <= ,in</h3>
+<p>==</p>
+{% if x == "x value" %}
+    <span>{{ x }}</span>
+{% endif %}
+<hr>
+<p>!=</p>
+{% if x != "y value" %}
+    <span>x != "y value"</span>
+{% endif %}
+<hr>
+<p><</p>
+{% if value < 15 %}
+    <span> if value < 15 ->{{ value }}</span>
+{% endif %}
+<hr>
+<p> > </p>
+{% if value > 5 %}
+    <span> if value > 5 ->{{ value }}</span>
+{% endif %}
+<hr>
+<p> >= , <= </p>
+{% if value <= 10 %}
+    <span> if value <= 10 ->{{ value }}</span>
+{% endif %}
+<hr>
+
+<p>ELIF</p>
+{% if var == "var1" %}
+    {{ var }}
+{% elif var == "var2" %}
+    {{ var }}
+{% elif var  == "var3" %}
+    {{ var }}
+{% else %}
+    EMPTY!
+{% endif %}
+
+
+
+
+
+<h2>IN</h2>
+{% if "name" in obj %}
+    {{ obj.name }}
+{% endif %}
+<hr>
+{% if "bc" in "abcdef" %}
+    Это предложение выводится, поскольку "bc" является подстрокой "abcdef"
+{% endif %}
+<hr>
+{% if "bc" not in "adas" %}
+    Это предложение выводится, поскольку "bc"  не является подстрокой "adas"
+{% endif %}
+<hr>
+{% if "hello" in greetings %}
+    Если greetings представляет собой список или множество, одним из
+    элементов которого является "hello", это предложение будет выведено.
+{% endif %}
+
+<hr>
+Операторы сравнения нельзя записывать цепочкой, как в Python или в математической записи. Например, вместо записи:
+
+{% if a > b > c %}
+    (WRONG)
+{% endif %}
+следует писать:
+<span>if a > b and b > c</span>
+{% if a > b and b > c %}
+    100 > 10 > 1
+{% endif %}
+</body>
+</html>

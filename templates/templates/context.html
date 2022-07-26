@@ -1,0 +1,35 @@
+{% load poll_extras %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+          ol.variables li ,    ol.filters li span
+        {
+            font-size: 32px;
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Привет третий урок!</h1>
+    <h2>{{test}}</h2>
+    <h2>Переменные:</h2>
+
+    <ol class="variables">
+        <li>Name : {{name}}</li>
+        <li>Surname : {{surname}}</li>
+        <li>Coords.x : {{coords.x}}</li>
+        <li>Coords.y : {{coords.y}}</li>
+        <li>list[0] : {{list.0}}</li>
+        <li>Undefined : {{qwerty}}</li>
+    </ol>
+
+    {% for elem in list%}
+         <p style = "font-size: 32px; border : 2px solid {{elem|get_date_color}}"> {{elem|compare_number}} </p>
+    {%endfor%}
+</body>
+</html>

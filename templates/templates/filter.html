@@ -1,0 +1,68 @@
+{% load poll_extras %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django templates - filters</title>
+
+    <style>
+
+        h3
+        {   text-decoration : underline;
+            color: darkblue;
+        }
+        ol.filters li span
+        {
+            font-size: 32px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Фильтры:</h2>
+        <h3>Стандартные фильтры!</h3>
+    <ol class = "filters">
+        <li>Фильтр  <span>add</span>  (10|add:2) : {{value|add:2}}</li>
+        <li>Фильтр  <span>add</span> (first|add:second) : {{first|add:second}}</li>
+        <li>Фильтр  <span>addslashes</span> (str|addslashes) : {{str|addslashes}}</li>
+        <li>Фильтр  <span>capfirst</span> (name|capfirst) : {{name|capfirst}}</li>
+        <li>Фильтр  <span>cut</span> (str|cut:" ") : {{str|cut:" "}}</li>
+        <li>Фильтр  <span>date</span> (date|date:"D d M Y") : {{date|date:"D d M Y"}}</li>
+        <li>Фильтр  <span>date</span> (date|date:"DATE_FORMAT") : {{date|date:"DATE_FORMAT"}}</li>
+        <li>Фильтр  <span>date</span> (date|date:"DATETIME_FORMAT") : {{date|date:"DATETIME_FORMAT"}}</li>
+        <li>Фильтр  <span>date</span> (date|date:"SHORT_DATE_FORMAT") : {{date|date:"SHORT_DATE_FORMAT"}}</li>
+        <li>Фильтр  <span>date</span> (date|date:"SHORT_DATETIME_FORMAT") : {{date|date:"SHORT_DATETIME_FORMAT"}}</li>
+         <p>
+            D - день недели , 3-х буквенное текстовое название. d - День месяца, 2 цифры с ведущим нулем. От '01' до '31'
+            M - Название месяца, текстовое, 3-х буквенное. Y  - Год, 4 цифры.
+        </p>
+        <li>Фильтр  <span>default</span> (empty_one|default:"variable is empty") : {{empty_one|default:"variable is empty"}}</li>
+        <li>Фильтр  <span>dictsort</span> (for_sort|dictsort:"age") : {{for_sort|dictsort:"age"}}</li>
+        <li>Фильтр  <span>divisibleby</span> (value|divisibleby:"3") (10/2)? : {{value|divisibleby:"3"}}</li>
+        <li>Фильтр  <span>first</span> (first|first) : {{first|first}}</li>
+        <li>Фильтр  <span>last</span> (first|last) : {{first|last}}</li>
+        <li>Фильтр  <span>floatformat</span> (float|floatformat) : {{float|floatformat:1}}</li>
+        <li>Фильтр  <span>get_digit</span> (number|get_digit) 12345678 : {{number|get_digit:3}}</li>
+        <li>Фильтр  <span>join</span> (first|join:"///")  : {{first|join:"///"}}</li>
+        <li>Фильтр  <span>length</span> (first|length)  : {{first|length}}</li>
+        <li>Фильтр  <span>length_is</span> (first|length_is: "4")  : {{first|length_is:"6"}}</li>
+        <li>Фильтр  <span>lower</span> (str|lower)  : {{str|lower}}</li>
+        <li>Фильтр  <span>upper</span> (str|upper)  : {{str|upper}}</li>
+        <li>Фильтр  <span>make_list </span> (str|make_list )  : {{str|make_list}}</li>
+        <li>Фильтр  <span>slice </span> (second|slice:"2" )  : {{second|slice:"2"}}</li>
+        <li>Фильтр  <span>wordcount </span> (str|wordcount )  : {{str|wordcount}}</li>
+        <li>Фильтр  <span>yesno</span> (boolean_var|yesno:"yeah,no,maybe" )  : {{boolean_var|yesno:"true,false,none"}}</li>
+
+
+
+    </ol>
+    <h3>Свои фильтры!</h3>
+        <span> Без фильтра :{{name_low}}</span> <br>
+        <span> Со своим фильтром <span style = "color: red;  font-size: 24px;">my_lower_filter</span> : {{name_low|my_lower_filter}}</span>
+    <span>{{text}}</span>
+
+
+
+
+</body>
+</html>
