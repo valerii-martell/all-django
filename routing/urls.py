@@ -9,4 +9,5 @@ urlpatterns = [
     path('function/<int:year>/<int:month>/<int:day>/', views.function),
     path('render-html/', views.render_html),
     path('render-template/', views.render_template),
+    path('request-properties/', views.request_properties),
 ]
