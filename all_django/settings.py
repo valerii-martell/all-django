@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'routing',
     'templates',
     'models',
+    'forms',
 ]
 
 MIDDLEWARE = [

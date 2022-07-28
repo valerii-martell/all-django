@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul.errorlist {
+            list-style: none;
+        }
+
+        ul.errorlist li {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+{% block form %}
+    {% if result_ok %}
+        <script>
+            alert({{result_ok}});
+        </script>
+    {% endif %}
+    <h1>Добавить автора</h1>
+
+    <form action="add-author/" method="post">
+        {% csrf_token %}
+        {{ form_for_author1.as_ul }}
+        <input type="submit" value="Submit"/>
+    </form>
+    <hr>
+    <h1>Добавить статью</h1>
+    <form action="add-article/" method="post">
+        {% csrf_token %}
+        {{ form_for_article.as_p }}
+        <input type="submit" value="Submit"/>
+    </form>
+    <hr>
+
+    <h1>Контактная форма</h1>
+
+    <!--{% if erorrs %}-->
+        <!--{{errors}}-->
+        <!--{% endif %}-->
+    <form action="/lesson-fifth/" method="post">
+        {% csrf_token %}
+        {{ form_contact.as_p }}
+        <input type="submit" value="Submit"/>
+    </form>
+    <hr>
+{% endblock %}
+
+
+</body>
+</html>

@@ -22,5 +22,6 @@ urlpatterns = [
     path('routing/', include("routing.urls")),
     path('templates/', include("templates.urls")),
     path('models/', include("models.urls")),
+    path('forms/', include("forms.urls")),
     path('admin/', admin.site.urls),
 ]
