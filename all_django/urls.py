@@ -23,5 +23,6 @@ urlpatterns = [
     path('templates/', include("templates.urls")),
     path('models/', include("models.urls")),
     path('forms/', include("forms.urls")),
+    path('orm/', include("orm.urls")),
     path('admin/', admin.site.urls),
 ]

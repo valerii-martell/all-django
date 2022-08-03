@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Сотрудники</h1>
+{% block content %}
+<table border = '1' cellpadding="5px">
+    <tr style = 'background : blue; color: white;'>
+        <td>ID</td>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Дата рождения</td>
+        <td>Компания</td>
+        <td>Должность</td>
+        <td>Язык программирования</td>
+        <td>Зарплата</td>
+       </tr>
+    {% for human in all_humans %}
+    <tr>
+        <td>{{human.id}}</td>
+        <td>{{human.name}}</td>
+        <td>{{human.surname}}</td>
+        <td>{{human.birth}}</td>
+        <td>{{human.company}}</td>
+        <td>{{human.position}}</td>
+        <td>{{human.language}}</td>
+        <td>{{human.salary}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<h2>Работают в Google</h2>
+<table border = '1' cellpadding="5px">
+    <tr style = 'background : red; color: white;'>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Дата рождения</td>
+        <td>Компания</td>
+        <td>Должность</td>
+        <td>Язык программирования</td>
+        <td>Зарплата</td>
+       </tr>
+    {% for human in workers_google %}
+    <tr>
+        <td>{{human.name}}</td>
+        <td>{{human.surname}}</td>
+        <td>{{human.birth}}</td>
+        <td>{{human.company}}</td>
+        <td>{{human.position}}</td>
+        <td>{{human.language}}</td>
+        <td>{{human.salary}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<h2>Первый сотрудник</h2>
+<table border = '1' cellpadding="5px">
+    <tr style = 'background : yellow; color: black;'>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Дата рождения</td>
+        <td>Компания</td>
+        <td>Должность</td>
+        <td>Язык программирования</td>
+        <td>Зарплата</td>
+       </tr>
+
+    <tr>
+        <td>{{one_worker.name}}</td>
+        <td>{{one_worker.surname}}</td>
+        <td>{{one_worker.birth}}</td>
+        <td>{{one_worker.company}}</td>
+        <td>{{one_worker.position}}</td>
+        <td>{{one_worker.language}}</td>
+        <td>{{one_worker.salary}}</td>
+    </tr>
+
+</table>
+<h2>Сотрудники 1976 года рождения</h2>
+
+
+<table border = '1' cellpadding="5px">
+    <tr style = 'background : white; color: black;'>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Дата рождения</td>
+        <td>Компания</td>
+        <td>Должность</td>
+        <td>Язык программирования</td>
+        <td>Зарплата</td>
+       </tr>
+{% for elem in filtered %}
+    <tr>
+        <td>{{elem.name}}</td>
+        <td>{{elem.surname}}</td>
+        <td>{{elem.birth}}</td>
+        <td>{{elem.company}}</td>
+        <td>{{elem.position}}</td>
+        <td>{{elem.language}}</td>
+        <td>{{elem.salary}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+<h2>Первые  два сотрудника</h2>
+
+<table border = '1' cellpadding="5px">
+    <tr style = 'background : green; color: black;'>
+        <td>ID</td>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Дата рождения</td>
+        <td>Компания</td>
+        <td>Должность</td>
+        <td>Язык программирования</td>
+        <td>Зарплата</td>
+       </tr>
+{% for elem in first_two %}
+    <tr>
+        <td>{{elem.id}}</td>
+        <td>{{elem.name}}</td>
+        <td>{{elem.surname}}</td>
+        <td>{{elem.birth}}</td>
+        <td>{{elem.company}}</td>
+        <td>{{elem.position}}</td>
+        <td>{{elem.language}}</td>
+        <td>{{elem.salary}}</td>
+    </tr>
+{% endfor %}
+</table>
+<h2>Сортировка по дате без параметров</h2>
+<table border = '1' cellpadding="5px">
+    <tr style = 'background : green; color: black;'>
+        <td>ID</td>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Дата рождения</td>
+        <td>Компания</td>
+        <td>Должность</td>
+        <td>Язык программирования</td>
+        <td>Зарплата</td>
+       </tr>
+{% for elem in ordered %}
+    <tr>
+        <td>{{elem.id}}</td>
+        <td>{{elem.name}}</td>
+        <td>{{elem.surname}}</td>
+        <td>{{elem.birth}}</td>
+        <td>{{elem.company}}</td>
+        <td>{{elem.position}}</td>
+        <td>{{elem.language}}</td>
+        <td>{{elem.salary}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+<h2>Сортировка по дате</h2>
+<table border = '1' cellpadding="5px">
+    <tr style = 'background : green; color: black;'>
+        <td>ID</td>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Дата рождения</td>
+        <td>Компания</td>
+        <td>Должность</td>
+        <td>Язык программирования</td>
+        <td>Зарплата</td>
+       </tr>
+{% for elem in sorted %}
+    <tr>
+        <td>{{elem.id}}</td>
+        <td>{{elem.name}}</td>
+        <td>{{elem.surname}}</td>
+        <td>{{elem.birth}}</td>
+        <td>{{elem.company}}</td>
+        <td>{{elem.position}}</td>
+        <td>{{elem.language}}</td>
+        <td>{{elem.salary}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+
+<h2>Сортировка по ЗП</h2>
+<table border = '1' cellpadding="5px">
+    <tr style = 'background : pink; color: black;'>
+        <td>ID</td>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Дата рождения</td>
+        <td>Компания</td>
+        <td>Должность</td>
+        <td>Язык программирования</td>
+        <td>Зарплата</td>
+       </tr>
+{% for elem in sorted_salary %}
+    <tr>
+        <td>{{elem.id}}</td>
+        <td>{{elem.name}}</td>
+        <td>{{elem.surname}}</td>
+        <td>{{elem.birth}}</td>
+        <td>{{elem.company}}</td>
+        <td>{{elem.position}}</td>
+        <td>{{elem.language}}</td>
+        <td>{{elem.salary}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+<h1>Василий и Ваня </h1>
+
+{% for elem in name_vasya%}
+<p>{{elem.name}}</p>
+<p>{{elem.surname}}</p>
+<p>{{elem.position}}</p>
+{% endfor %}
+<hr>
+<hr>
+<hr>
+
+
+
+
+
+
+<h2>Форма поиска</h2>
+<form action="" method = 'post'>
+    {% csrf_token %}
+    <label for="">Введите компанию</label>
+    <input  name = 'search' type="text">
+    <button type="submit">Найти</button>
+</form>
+{% endblock %}
+</body>
+</html>

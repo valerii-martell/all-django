@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'templates',
     'models',
     'forms',
+    'orm',
 ]
 
 MIDDLEWARE = [

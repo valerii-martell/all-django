@@ -1,0 +1,37 @@
+{% extends 'human_list.html' %}
+{% block content %}
+<h2>Форма поиска</h2>
+<form action="" method = 'post'>
+    {% csrf_token %}
+    <label for="">Введите компанию</label>
+    <input  name = 'search' type="text">
+    <button>Найти</button>
+</form>
+<h2>Результаты поиска по "{{query}}"</h2>
+
+{% if empty %}
+<p style = ' font-size: 32px;color: red;'>{{empty}}</p>
+{% endif %}
+<table border = '1'>
+        <tr style = 'background : yellow; color: black;'>
+            <td>Имя</td>
+            <td>Фамилия</td>
+            <td>Дата рождения</td>
+            <td>Компания</td>
+            <td>Должность</td>
+            <td>Зарплата</td>
+            <td>Язык программирования</td>
+       </tr>
+    {% for elem in result_list %}
+    <tr>
+        <td>{{elem.name}}</td>
+        <td>{{elem.surname}}</td>
+        <td>{{elem.birth}}</td>
+        <td>{{elem.company}}</td>
+        <td>{{elem.position}}</td>
+        <td>{{elem.salary}}</td>
+        <td>{{elem.language}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
