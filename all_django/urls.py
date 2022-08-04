@@ -25,5 +25,6 @@ urlpatterns = [
     path('forms/', include("forms.urls")),
     path('orm/', include("orm.urls")),
     path('authentication/', include("authentication.urls")),
+    path('ajax/', include("ajax.urls")),
     path('admin/', admin.site.urls),
 ]
