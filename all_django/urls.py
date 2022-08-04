@@ -20,6 +20,7 @@ urlpatterns = [
     path('', include("index.urls")),
     path('smoke/', include("smoke.urls")),
     path('routing/', include("routing.urls")),
+    path('views/', include("views.urls")),
     path('templates/', include("templates.urls")),
     path('models/', include("models.urls")),
     path('forms/', include("forms.urls")),

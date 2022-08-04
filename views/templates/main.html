@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+{% csrf_token %}
+<table>
+    <tr>
+        <th>Number</th>
+        <th>Type</th>
+        <th>Link</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Text</td>
+        <td><a href="{% url 'text' %}" type="button">Text link</a></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>File</td>
+        <td><a href="{% url 'file' %}" type="button">File link</a></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Redirect</td>
+        <td><a href="{% url 'redirect' %}" type="button">Redirect link</a></td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Not allowed</td>
+        <td><a href="{% url 'not_allowed' %}" type="button">Not allowed
+            link</a></td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>JSON</td>
+        <td><a href="{% url 'json' %}" type="button">JSON link</a></td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>POST</td>
+        <td>
+            {% csrf_token %}
+            <button onclick="send_post('POST')" type="button">POST request
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>GET</td>
+        <td>
+            {% csrf_token %}
+            <button onclick="send_post('GET')" type="button">GET request
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>DELETE</td>
+        <td>
+            {% csrf_token %}
+            <button onclick="send_post('DELETE')" type="button">DELETE request
+            </button>
+        </td>
+    </tr>
+</table>
+
+</body>
+<script>
+    function send_post(requestString) {
+
+        let request_type = requestString;
+
+        $.ajax({
+            method: request_type,
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                this_is: request_type,
+                type: "json",
+            },
+            url: "{% url "class_view" %}",
+            success: function (result) {
+                console.log(result)
+            },
+            error: function (result) {
+                console.log(result)
+            }
+        })
+        ;
+    }
+
+
+</script>
+</html>

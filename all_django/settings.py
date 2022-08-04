@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'index',
     'smoke',
     'routing',
+    'views',
     'templates',
     'models',
     'forms',
