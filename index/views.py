@@ -17,6 +17,7 @@ def index(request):
             <p><a href="/models">004. Models</a></p>
             <p><a href="/forms">005. Forms</a></p>
             <p><a href="/orm">007. Django ORM</a></p>
+            <p><a href="/authentication">008. Authentication</a></p>
         </body>
     </html>
     """

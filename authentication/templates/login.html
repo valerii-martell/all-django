@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+
+  </head>
+  <body>
+    <form action="" method="post">{% csrf_token %}
+
+      {% form.as_p %}
+      <!-- as_p для того, чтобы каждый элемент формы был с новой строки -->
+
+      <button type="submit">Login</button>
+    </form>
+  </body>
+</html>
+
+

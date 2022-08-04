@@ -24,5 +24,6 @@ urlpatterns = [
     path('models/', include("models.urls")),
     path('forms/', include("forms.urls")),
     path('orm/', include("orm.urls")),
+    path('authentication/', include("authentication.urls")),
     path('admin/', admin.site.urls),
 ]
