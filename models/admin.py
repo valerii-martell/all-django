@@ -9,6 +9,9 @@ admin.site.register(models.Restaurant)
 admin.site.register(models.Waiter)
 admin.site.register(models.Publication)
 admin.site.register(models.Article)
+admin.site.register(models.Client)
+admin.site.register(models.Flower)
+admin.site.register(models.Bouquet)
 
 
 #
