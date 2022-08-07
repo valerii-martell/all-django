@@ -13,6 +13,9 @@ urlpatterns = [
     path('add-article/', views.add_article),
     path('generic-form/', views.ContactFormView.as_view()),
     path('validators-form/', views.UrlView.as_view()),
+    path('function-form/', views.function_form, name='function_form'),
+    path('class-form/', views.ClassFormView.as_view(), name='class_form'),
+    path('model-form/', views.ModelFormView.as_view(), name='model_form')
 ]
 
 # urlpatterns = [
