@@ -2,6 +2,7 @@ from orm.models import GamerLibraryModel, GamerModel, GameModel
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
+
 class GameModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = GameModel
@@ -12,6 +13,7 @@ class GamerModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = GamerModel
         fields = ['nickname', 'email']
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

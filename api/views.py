@@ -1,15 +1,18 @@
+from django.contrib.auth import authenticate
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets
-from rest_framework.decorators import api_view
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import CreateAPIView, RetrieveAPIView, RetrieveUpdateAPIView
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK
 from rest_framework.views import APIView
 
 from orm.models import GameModel, GamerModel
-from .serializers import GameModelSerializer, GamerModelSerializer
+from .serializers import GameModelSerializer, GamerModelSerializer, UserSerializer
 
 
 def api_index(request):
@@ -31,8 +34,8 @@ def api_index(request):
             <p><a href="/api/create">007. Generic API view - create</a></p>
             <p><a href="/api/retrieve/1">008. Generic API view - retrieve by id</a></p>
             <p><a href="/api/retrieve-update/1">009. Generic API view - retrieve and update by id</a></p>
-            
-            
+            <p><a href="/api/register">010. API new user register - function-based view + token</a></p>
+            <p><a href="/api/login">011. API user login - generic API view</a></p>
         </body>
     </html>
     """
@@ -94,3 +97,24 @@ class MyRetrieveAPIView(RetrieveAPIView):
 class MyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     queryset = GamerModel.objects.all()
     serializer_class = GamerModelSerializer
+
+
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes((AllowAny,))
+def user_login(request):
+    username = request.data.get("username")
+    password = request.data.get("password")
+    if username is None or password is None:
+        return Response({'error': 'Both username and password are required'})
+    user = authenticate(username=username, password=password)
+    if not user:
+        return Response({'error': 'Invalid data'})
+
+    token, _ = Token.objects.get_or_create(user=user)
+    return Response({'token': token.key}, status=HTTP_200_OK)
+
+
+class CreateUser(CreateAPIView):
+    permission_classes = (AllowAny,)
+    serializer_class = UserSerializer

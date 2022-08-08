@@ -17,7 +17,9 @@ urlpatterns = [
     path('retrieve/<int:pk>', views.MyRetrieveAPIView.as_view(), name='retrieve'),
     path('retrieve-update/<int:pk>', views.MyRetrieveUpdateAPIView.as_view(),
          name='retrieve_update'),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('login', views.user_login),
+    path('register', views.CreateUser.as_view())
 ]
 
 # urlpatterns = [
