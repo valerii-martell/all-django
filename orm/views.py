@@ -95,45 +95,45 @@ def upload_data(request):
     # if not GameModel.objects.all():
     #     return HttpResponse(f"DB is already populated.")
     # else:
-        GameModel.objects.all().delete()
-        with open('orm/vgsales.csv') as f:
-            reader = csv.reader(f)
-            count = 0
-            # TODO: bulk_create(list)
-            to_create = []
-            for row in reader:
-                # print(row)
-                try:
-                    to_create.append(GameModel(
-                        name=row[1],
-                        platform=row[2],
-                        year=datetime.date(int(row[3]), 1, 1),
-                        genre=row[4],
-                        publisher=row[5],
-                        na_sales=row[6],
-                        eu_sales=row[7],
-                        jp_sales=row[8],
-                        other_sales=row[9],
-                        global_sales=row[10],
-                    ))
-                    # _, created = GameModel.objects.get_or_create(
-                    #     name=row[1],
-                    #     platform=row[2],
-                    #     year=datetime.date(int(row[3]), 1, 1),
-                    #     genre=row[4],
-                    #     publisher=row[5],
-                    #     na_sales=row[6],
-                    #     eu_sales=row[7],
-                    #     jp_sales=row[8],
-                    #     other_sales=row[9],
-                    #     global_sales=row[10],
-                    # )
-                    count += 1
-                except Exception as error:
-                    # print(error)
-                    pass
-            GameModel.objects.bulk_create(to_create)
-        return HttpResponse(f"Done! Added {count} rows.")
+    GameModel.objects.all().delete()
+    with open('orm/vgsales.csv') as f:
+        reader = csv.reader(f)
+        count = 0
+        # TODO: bulk_create(list)
+        to_create = []
+        for row in reader:
+            # print(row)
+            try:
+                to_create.append(GameModel(
+                    name=row[1],
+                    platform=row[2],
+                    year=datetime.date(int(row[3]), 1, 1),
+                    genre=row[4],
+                    publisher=row[5],
+                    na_sales=row[6],
+                    eu_sales=row[7],
+                    jp_sales=row[8],
+                    other_sales=row[9],
+                    global_sales=row[10],
+                ))
+                # _, created = GameModel.objects.get_or_create(
+                #     name=row[1],
+                #     platform=row[2],
+                #     year=datetime.date(int(row[3]), 1, 1),
+                #     genre=row[4],
+                #     publisher=row[5],
+                #     na_sales=row[6],
+                #     eu_sales=row[7],
+                #     jp_sales=row[8],
+                #     other_sales=row[9],
+                #     global_sales=row[10],
+                # )
+                count += 1
+            except Exception as error:
+                # print(error)
+                pass
+        GameModel.objects.bulk_create(to_create)
+    return HttpResponse(f"Done! Added {count} rows.")
 
 
 class FilterView(ListView):
