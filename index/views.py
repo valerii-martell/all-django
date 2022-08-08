@@ -23,5 +23,4 @@ def index(request):
         </body>
     </html>
     """
-
     return HttpResponse(_html)
