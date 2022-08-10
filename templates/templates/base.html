@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Main page{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+
+
+<header>
+    <img height="200" src="http://rtfm.co.ua/wp-content/uploads/2014/11/django_logo_1.png" alt="">
+    <nav>
+        <a href="/templates/base">Main page</a>
+        <a href="/templates/adrian">Adrian Holovaty</a>
+        <a href="/templates/realese">Django releases</a>
+
+    </nav>
+</header>
+{% include 'aside.html' %}
+
+{% block content %}
+    <h1>Main page! </h1>
+    <div>
+        You can only be convinced of all the advantages of Django and Python in practice.
+        To use such technologies, you need to make sure that your web resource
+        meets certain requirements. For example, to install "django" it is necessary that the hosting has a UNIX-like
+        system.
+        For Django to function properly, you need to provide access to one of the web servers: Ngix, Apache, or
+        Lighttpd.
+        Do not forget that hosting for "django" must be able to run scripts.
+        The Cron task scheduler is usually used for this purpose.
+        If you don't have time to look for a suitable hosting provider in your city,
+        but at the same time you want to get the whole range of services, you can enter the appropriate query in the
+        search engine.
+    </div>
+{% endblock %}
+
+
+
+<footer>
+    {% include "footer.html" %}
+</footer>
+</body>
+</html>

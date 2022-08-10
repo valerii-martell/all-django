@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} Django releases !{% endblock %}
+{% block content %}
+<div>
+    Django releases
+</div>
+<ul>
+    {% for elem in obj %}
+    <li> Year :   {{ elem.year }}
+         Version :{{ elem.version }}
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

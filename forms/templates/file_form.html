@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Form</title>
+</head>
+<body>
+
+<form action="/forms/file/" method="post">
+    {% csrf_token %}
+    Your name<input type="text" name="name"> <br>
+    Your surname<input type="text" name="surname"><br>
+    Your birthday<input type="text" name='birth'><br>
+    Your gender <br>
+    <input type="radio" name='gender' value="male">Male<br>
+    <input type="radio" name='gender' value="female">Female
+    <button type="submit">Write into file</button>
+</form>
+
+</body>
+</html>

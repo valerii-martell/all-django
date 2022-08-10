@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IN&NOT_IN</title>
+
+    <style>
+        span
+        {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+
+<h2>REGROUP for ordered list</h2>
+{% regroup people by gender as gender_list %}
+
+<ul>
+  {% for gender in gender_list %}
+    <li>{{ gender.grouper }}
+      <ul>
+        {% for item in gender.list %}
+          <li>{{ item.first_name }} {{ item.last_name }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+<h2>REGROUP for unordered list</h2>
+{% regroup people_for_test by gender as gender_list %}
+
+<ul>
+  {% for gender in gender_list %}
+    <li>{{ gender.grouper }}
+      <ul>
+        {% for item in gender.list %}
+          <li>{{ item.first_name }} {{ item.last_name }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+<h2>REGROUP with dictsort filter</h2>
+{% regroup people_for_test|dictsort:"gender" by gender as gender_list %}
+<ul>
+  {% for gender in gender_list %}
+    <li>{{ gender.grouper }}
+      <ul>
+        {% for item in gender.list %}
+          <li>{{ item.first_name }} {{ item.last_name }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+</body>
+</html>

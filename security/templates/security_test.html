@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Django - security</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+<h1>Security index:</h1>
+<p><a href="/">001. Back to main index</a></p>
+<p>
+<h5>XSS attack</h5>
+<form method="post">
+    {% csrf_token %}
+    <label for="user_input_js">Try to input JS code: alert("hacked");</label>
+    <input id="user_input_js" name="user_input_js" type="text">
+    <button type="submit">Submit data</button>
+</form>
+<button onclick="{{ my_variable_js }}">Execute submitted code</button>
+</p>
+<p>
+<h5>SQL injection</h5>
+<form method="post">
+    {% csrf_token %}
+    <label for="user_input_sql">Try to input raw SQL code: SELECT * FROM main.orm_gamemodel LIMIT 1;</label>
+    <input id="user_input_sql" name="user_input_sql" type="text">
+    <button type="submit">Submit data</button>
+</form>
+<p>{{ my_variable_sql }}</p>
+</p>
+<p>
+<h5>POST AJAX - CSRF check</h5>
+{% csrf_token %}
+<button onclick="send_post('POST')" type="button">POST AJAX request</button>
+</form>
+<p id="csrf"></p>
+</p>
+<script>
+    function send_post(requestString) {
+        let request_type = requestString;
+        $.ajax({
+            method: request_type,
+            data: {
+                {# csrfmiddlewaretoken: '{{ csrf_token }}', #}
+                this_is: request_type,
+                type: "some_data",
+            },
+            url: "{% url 'ajax_url' %}",
+            success: function (data) {
+                $('csrf').append(data.result)
+            },
+            statusCode: {
+                403: function () {
+                    alert("403 Forbidden");
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

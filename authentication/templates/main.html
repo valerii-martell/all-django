@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        a
+        {
+            display: block;
+            float: right;
+            margin-right: 25px;
+            padding: 10px 50px;
+            color: black;
+
+            border-radius : 15px;
+            border: 1px solid black;
+            text-decoration: none;
+            transition: color 0.5s , background 0.5s;
+        }
+
+        a:hover
+        {
+            color : white;
+            background : blue;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+{% if user.is_authenticated  %}
+<a href="logout">выйти({{user.username}})</a>
+{% else %}
+<a href="register">Регистрация на сайте</a>
+<a href="login">Авторизация</a>
+{% endif %}
+
+{% for elem in humans %}
+<p> Name  - {{elem.name}}</p>
+<p>Surname - {{elem.surname}}</p>
+<p>Company - {{elem.company}}</p>
+{% endfor %}
+
+
+</body>
+</html>

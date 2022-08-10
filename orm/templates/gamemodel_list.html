@@ -1,0 +1,32 @@
+<table style="width:100%">
+    <tr>
+        <th scope="col">name</th>
+        <th scope="col">platform</th>
+        <th scope="col">year</th>
+        <th scope="col">genre</th>
+        <th scope="col">publisher</th>
+        <th scope="col">na_sales</th>
+        <th scope="col">eu_sales</th>
+        <th scope="col">jp_sales</th>
+        <th scope="col">other_sales</th>
+        <th scope="col">global_sales</th>
+    </tr>
+    {% for object in object_list %}
+        <tr>
+        <!-- Display Objects -->
+        <td>{{ object.name }}</td>
+        <td>{{ object.platform }}</td>
+        <td>{{ object.year }}</td>
+        <td>{{ object.genre }}</td>
+        <td>{{ object.publisher }}</td>
+        <td>{{ object.na_sales }}</td>
+        <td>{{ object.eu_sales }}</td>
+        <td>{{ object.jp_sales }}</td>
+        <td>{{ object.other_sales }}</td>
+        <td>{{ object.global_sales }}</td>
+        <!-- If objet_tdst is empty  -->
+    {% empty %}
+        <td>No objects yet.</td>
+    {% endfor %}
+    </tr>
+</table>

@@ -1,0 +1,17 @@
+{% extends 'ajax.html' %}
+
+{% block login %}
+    <form action="" method="post">
+      {% csrf_token %}
+      <!-- as_p для того, чтобы каждый элемент формы был с новой строки -->
+      {% for field in form %}
+      <label>{{field.label}}</label>
+      <p>{{field}}</p>
+        {% if field.errors %}
+          <p>{{field.errors}}</p>
+        {% endif %}
+      {% endfor %}
+      <button type="submit">войти</button>
+    </form>
+
+{% endblock %}
