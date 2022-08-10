@@ -82,3 +82,25 @@ class AllUsers(TemplateView):
 
         context['users'] = User.objects.all()
         return context
+
+
+# class CreatUser(FormView):
+#     form_class = RegisterForm
+#     template_name = 'signup.html'
+#     success_url = '/'
+#
+#     def form_valid(self, form):
+#         user = form.save()
+#         authenticate(username=user.email, password=user.password)
+#         login(self.request, user)
+#         return super(CreatUser, self).form_valid(form)
+#
+#
+# class AllUsers(TemplateView):
+#     template_name = "all_users.html"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#
+#         context['users'] = User.objects.all()
+#         return context
