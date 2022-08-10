@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'authentication',
     'ajax',
     'api',
+    'security'
 ]
 
 REST_FRAMEWORK = {
