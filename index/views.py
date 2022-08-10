@@ -22,6 +22,7 @@ def index(request):
             <p><a href="/ajax">009. Ajax</a></p>
             <p><a href="/api">010. API</a></p>
             <p><a href="/security">011. Security</a></p>
+            <p><a href="/custom-user">012. Custom user models</a></p>
         </body>
     </html>
     """

@@ -29,5 +29,6 @@ urlpatterns = [
     path('ajax/', include("ajax.urls")),
     path('api/', include("api.urls")),
     path('security/', include("security.urls")),
+    path('custom-user/', include("custom_user.urls")),
     path('admin/', admin.site.urls),
 ]
