@@ -16,7 +16,7 @@ from django.contrib.auth import login
 
 
 class MainView(TemplateView):
-    template_name = 'main.html'
+    template_name = 'auth.html'
 
     def get(self, request):
         if request.user.is_authenticated:

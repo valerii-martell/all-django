@@ -68,7 +68,7 @@ def render_html(request):
 
 
 def render_template(request):
-    return render(request, 'main.html', {})
+    return render(request, 'routing/main.html', {})
 
 
 def request_properties(request):
@@ -93,7 +93,7 @@ def request_properties(request):
 
 
 def render_to_string(request):
-    test_template = loader.render_to_string("main.html")
+    test_template = loader.render_to_string("routing/main.html")
     return HttpResponse(test_template)
 
 
