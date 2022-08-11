@@ -172,6 +172,8 @@ def realese(request):
 def jinja(request):
     context = {
         'my_string': "Wheeeee!",
-        'my_list': [0,1,2,3,4,5]
+        'my_list': [0,1,2,3,4,5],
+        'data':
+            {'key': 'Jinja2'}
     }
-    return render(request, "jinja2/jinja2.html", context)
+    return render(request, "jinja2/jinja2.html", context, using='jinja2')

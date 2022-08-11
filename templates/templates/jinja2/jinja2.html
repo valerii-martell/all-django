@@ -13,6 +13,7 @@
 </head>
 <body>
 <div class="container">
+    <p>Make sure that it is Jinja2 by using Python syntax: {{ data['key'] }}</p>
     <p>My string: {{ my_string }}</p>
     <p>List: {{ my_list }}</p>
     <p>Loop through the list:</p>
@@ -22,6 +23,191 @@
         {% endfor %}
     </ul>
 </div>
+{#<h1>Hi, Jinja2</h1>#}
+{#<h2>{{ lipsum(2) }}</h2>#}
+{#    <h2>Hello {{ user_data['name'] }}</h2>#}
+{#<h1>General</h1>#}
+{#<h2>#}
+{#    {% raw %}#}
+{#        {% ... %} for Statements#}
+{##}
+{#        {{ ... }} for Expressions to print to the template output#}
+{##}
+        {# ... for Comments not included in the template output #}
+{##}
+{#        # ... ## for Line Statements#}
+{#    {% endraw %}#}
+{#</h2>#}
+{#<h1> For </h1>#}
+{#<h2>#}
+{#    <ul>#}
+        {#        if user.name.startswith("S") #}
+{#        {% for user in user_data if user.name.startswith("S") %}#}
+{#            <li>{{ user.name }}</li>#}
+{#            {% else %}#}
+{#            <li><em>no users found</em></li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#    <ul>#}
+        {#    "{{ loop.cycle('odd', 'even') }}"#}
+        {#    loop.first #}
+        {#    loop.last #}
+{#        {% for key, value in user_info.items() %}#}
+{#            <dt>{{ loop.index0 }}</dt>#}
+{#            <dt>{{ key }}</dt>#}
+{#            <dd>{{ value }}</dd>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#</h2>#}
+{#<h1> IF </h1>#}
+{#<h2>#}
+{#    {% if user_data %}#}
+{#        <ul>#}
+{#            {% for user in user_data %}#}
+{#                <li>{{ user.name }}</li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    {% endif %}#}
+{##}
+{#    <h2>****</h2>#}
+{#    {% if user_data[1].name.startswith("S") %}#}
+{#        This name is Mykhailo#}
+{#    {% elif user_data[1].name.startswith("F") %}#}
+{#        This name is Lazoryk#}
+{#    {% else %}#}
+{#        This name is undefined#}
+{#    {% endif %}#}
+{#</h2>#}
+{#<h1> MACROS </h1>#}
+{#<h2>#}
+{#    {% macro input(name, value='', type='text', size=20) %}#}
+{#        <input type="{{ type }}" name="{{ name }}" value="{{#}
+{#                value }}" size="{{ size }}">#}
+{#    {% endmacro %}#}
+{##}
+{#    <p>{{ input('username') }}</p>#}
+{#    <p>{{ input('password', type='text', size=200) }}</p>#}
+{#    <p>{{ input('password', type='password') }}</p>#}
+{#    <p>{{ input('other', type='file', size=100) }}</p>#}
+{#    <p>{{ input.arguments }}</p>#}
+{##}
+{#    {% macro input_count(count) %}#}
+{#        {% for x in range(count) %}#}
+{#            <p>{{ caller(x) }} {{ x }}</p>#}
+{#        {% endfor %}#}
+{#    {% endmacro %}#}
+{#    {% call(y) input_count(5) %}#}
+{#        Some text {{ y+2 }}#}
+{#    {% endcall %}#}
+{#</h2>#}
+{#<h1>Set</h1>#}
+{#<h2>#}
+{#    {% set my_var = [1,2,100,4,5, 27] %}#}
+{##}
+{#    {% set current_var = namespace(value=0) %}#}
+{#    <p>current_var before{{ current_var.value }}</p>#}
+{#    {% for i in my_var %}#}
+{#        <p>{{ i }}</p>#}
+{#        {% set current_var.value = i %}#}
+{#    {% endfor %}#}
+{#    <p>current_var after{{ current_var.value }}</p>#}
+{##}
+{#    {% set block_var %}#}
+{#        <li><a href="/">Main</a>#}
+{#        <li><a href="/login">Login</a>#}
+{#    {% endset %}#}
+{#    {{ block_var }}#}
+{##}
+{#    {% set message = "my TeXt" %}#}
+{#    {% set reply | upper %}#}
+{#        You wrote {{ message }}#}
+{#    {% endset %}#}
+{#    {{ reply }}#}
+{#</h2>#}
+{#<h1>Math</h1>#}
+{#<h2> + - / // % * **</h2>#}
+{#<h2>Comparisons == != > >= < <=</h2>#}
+{#<h2>Logic "and" "or" "not"</h2>#}
+{#<h1>Filters</h1>#}
+{#<h2>#}
+{#    {% set number = -10.0000112 %}#}
+{#    <p>{{ number|abs }}</p>#}
+{#    <p>{{ message |capitalize }}</p>#}
+{#    <p>{{ message |upper }}</p>#}
+{#    <p>{{ message |lower }}</p>#}
+{#    <p>{{ message |length }}</p>#}
+{#    <p>{{ my_var |sort }}</p>#}
+{#    <p>{{ my_var |reverse }}</p>#}
+{#    <p>{{ my_var |first }}</p>#}
+{#    <p>{{ my_var |min }}</p>#}
+{#    <p>{{ my_var |max }}</p>#}
+{#    <p>{{ my_var |random }}</p>#}
+{#    <p>{{ my_var |reject("odd") }}</p>#}
+{#    <p>{{ my_var |sum }}</p>#}
+{#    <p>{{ user_data | tojson }}</p>#}
+{#    <p>{{ user_data |pprint(verbose=True) }}</p>#}
+{#</h2>#}
+{#<h1>Tests</h1>#}
+{#<h2>#}
+{#    <p>{{ 'boolean' if True is boolean else 'not boolean' }}</p>#}
+{#    <p>{{ 'callable' if ['1','2'] is callable else 'not callable' }}</p>#}
+{#    <p>{{ 'iterable' if ['1','2'] is iterable else 'not iterable' }}</p>#}
+{#    <p>{{ 'defined' if number_in is defined else 'not defined' }}</p>#}
+{#    <p>{{ 'eq' if 2 is eq 3 else 'not eq' }}</p>#}
+{#    <p>{{ 'even' if 2 is even else 'not even' }}</p>#}
+{#</h2>#}
+{#<h1> Global Functions </h1>#}
+{#<h2>#}
+{#    {% for number in range(5, 10) %}#}
+{#        <button>{{ number }}</button>#}
+{#    {% endfor %}#}
+{##}
+{#    <p>{{ lipsum(1) }}</p>#}
+{#    <p>{{ dict(foo='bar') }}</p>#}
+{##}
+{#    <ul>#}
+{#        {% set cycle = cycler("odd", "even") %}#}
+{#        {% for numb in range(10) %}#}
+{#            <li>{{ numb }}</li>#}
+{#            <li>Next {{ cycle.next() }}</li>#}
+{#            <li>Current {{ cycle.current }}</li>#}
+{#            {% if numb == 8 %}#}
+{#                <li>Reset {{ cycle.reset() }}</li>#}
+{#            {% endif %}#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{##}
+{##}
+{#    {% set pipe = joiner("|") %}#}
+{#    {% set categories = 'categories' %}#}
+{#    {% set author = [1,2,3,4,5,6,] %}#}
+{#    {% set can_edit = 'can_edit' %}#}
+{#    {% if categories %} {{ pipe() }}#}
+{#        Categories: {{ categories|join(", ") }}#}
+{#    {% endif %}#}
+{#    {% if author %} {{ pipe() }}#}
+{#        Author: {{ author[0] }}#}
+{#    {% endif %}#}
+{#    {% if can_edit %} {{ pipe() }}#}
+{#        <a href="?action=edit">Edit</a>#}
+{#    {% endif %}#}
+{#</h2>#}
+{#<h1> Other </h1>#}
+{#<h2>#}
+    {#    {% trans %}Hello, {{ user }}!{% endtrans %}#}
+    {#    <p>{% debug %}</p>#}
+{#    {% with %}#}
+{#        {% set test = 45 %}#}
+{#        {{ test }} is 45 here#}
+{#    {% endwith %}#}
+{##}
+{#    {% for number in range(10) %}#}
+{#        {% if number == 5 %}#}
+{#            {% continue %}#}
+{#        {% endif %}#}
+{#        <button>{{ number }}</button>#}
+{#    {% endfor %}#}
+{#</h2>#}
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 </body>
