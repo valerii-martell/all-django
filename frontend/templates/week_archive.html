@@ -1,0 +1,10 @@
+{% extends 'main/index.html' %}
+
+{% block content %}
+    {% for object in week_users_archive %}
+        <p>{{ object.email }}</p>
+        <p>Username: {{ object.username }}</p>
+        <p>Is active: {{ object.is_active }}</p>
+        <p>Date: {{ object.date_joined }}</p>
+    {% endfor %}
+{% endblock %}

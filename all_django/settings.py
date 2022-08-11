@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'api',
     'security',
     'custom_user',
+    # 'custom_admin',
+    'frontend'
 ]
 
 REST_FRAMEWORK = {

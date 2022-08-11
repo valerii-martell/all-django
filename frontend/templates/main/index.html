@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Custom css -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src='{% static "js/jquery.min.js" %}'></script>
+    <script type="text/javascript" src='{% static "js/popper.min.js" %}'></script>
+    <script type="text/javascript" src='{% static "js/bootstrap.min.js" %}'></script>
+    <script type="text/javascript" src='{% static "js/Chart.min.js" %}'></script>
+</head>
+<body>
+{% include "main/header.html" %}
+{% block content %}
+    <div class="jumbotron text-center">
+        <h1>My First Bootstrap Page</h1>
+        <p><a href="/frontend/report">Report</a></p>
+        <p><a href="/frontend/login">Login</a></p>
+        <p><a href="/frontend/accounts/profile">All users profiles</a></p>
+        <p><a href="/frontend/detail/1">Detail (pk)</a></p>
+        <p><a href="/frontend/detail-date/2022/08/11/1">Detail by date year/month/day/pk</a></p>
+        <p><a href="/frontend/week-archive/1">Week archive (pk)</a></p>
+        <p><a href="/frontend/create">Create</a></p>
+        <p><a href="/frontend/delete">Delete</a></p>
+        <p><a href="/frontend/update">Update</a></p>
+        <p>Resize this responsive page to see the effect!</p>
+        {% for i in some_data %}
+            <p>{{ i }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% include "main/footer.html" %}
+</body>
+</html>

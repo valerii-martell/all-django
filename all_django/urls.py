@@ -32,5 +32,6 @@ urlpatterns = [
     path('security/', include("security.urls")),
     path('custom-user/', include("custom_user.urls")),
     path('custom-admin/', include("custom_admin.urls")),
+    path('frontend/', include("frontend.urls")),
     path('admin/', admin.site.urls),
 ]
