@@ -33,6 +33,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 'grappelli',
+    # 'django_admin_index',
+    # 'custom_admin.apps.SuitConfig',
+    'custom_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +59,7 @@ INSTALLED_APPS = [
     'ajax',
     'api',
     'security',
-    'custom_user'
+    'custom_user',
 ]
 
 REST_FRAMEWORK = {
@@ -89,6 +93,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                # 'django_admin_index.context_processors.dashboard',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],

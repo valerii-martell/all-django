@@ -23,6 +23,7 @@ def index(request):
             <p><a href="/api">010. API</a></p>
             <p><a href="/security">011. Security</a></p>
             <p><a href="/custom-user">012. Custom user models</a></p>
+            <p><a href="/custom-admin">013. Custom Admin panel</a></p>
         </body>
     </html>
     """

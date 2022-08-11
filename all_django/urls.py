@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    # path('grappelli/', include('grappelli.urls')),
     path('', include("index.urls")),
     path('smoke/', include("smoke.urls")),
     path('routing/', include("routing.urls")),
@@ -30,5 +31,6 @@ urlpatterns = [
     path('api/', include("api.urls")),
     path('security/', include("security.urls")),
     path('custom-user/', include("custom_user.urls")),
+    path('custom-admin/', include("custom_admin.urls")),
     path('admin/', admin.site.urls),
 ]

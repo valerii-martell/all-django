@@ -1,8 +1,12 @@
 asgiref==3.5.2
 Django==4.0.6
+django-admin-index==2.0.2
 django-durationwidget==1.0.5
 django-filter==22.1
+django-grappelli==3.0.3
+django-ordered-model==3.6
 django-phone-field==1.8.1
+django-suit==0.2.28
 djangorestframework==3.13.1
 Jinja2==3.1.2
 Markdown==3.4.1
