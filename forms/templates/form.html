@@ -42,7 +42,7 @@
     <!--{% if erorrs %}-->
         <!--{{errors}}-->
         <!--{% endif %}-->
-    <form action="/lesson-fifth/" method="post">
+    <form action="/generic-form/" method="post">
         {% csrf_token %}
         {{ form_contact.as_p }}
         <input type="submit" value="Submit"/>
