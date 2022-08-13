@@ -20,6 +20,9 @@ from django.conf import settings
 
 from .token_generator import account_activation_token
 
+from mailchimp_marketing import Client
+from mailchimp_marketing.api_client import ApiClientError
+
 
 class Index(generic.TemplateView):
     template_name = 'emails_index.html'
@@ -114,3 +117,43 @@ def activate_account(request, uidb64, token):
         return HttpResponse('Your account has been activated successfully')
     else:
         return HttpResponse('Activation link is invalid!')
+
+
+api_key = settings.MAILCHIMP_API_KEY
+server = settings.MAILCHIMP_DATA_CENTER
+list_id = settings.MAILCHIMP_EMAIL_LIST_ID
+
+
+# Subscription Logic
+def subscribe(email):
+    """
+     Contains code handling the communication to the mailchimp api
+     to create a contact/member in an audience/list.
+    """
+
+    mailchimp = Client()
+    mailchimp.set_config({
+        "api_key": api_key,
+        "server": server,
+    })
+
+    member_info = {
+        "email_address": email,
+        "status": "subscribed",
+    }
+
+    try:
+        response = mailchimp.lists.add_list_member(list_id, member_info)
+        print("response: {}".format(response))
+    except ApiClientError as error:
+        print("An exception occurred: {}".format(error.text))
+
+
+def subscription(request):
+    if request.method == "POST":
+        email = request.POST['email']
+        print(email)
+        subscribe(email)
+        messages.success(request, "Email received. thank You! ")
+
+    return render(request, "subscription.html")

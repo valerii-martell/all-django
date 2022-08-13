@@ -178,10 +178,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# GMAIL CONFIG
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = 'tqkvxpsaibxiqipn' # os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = 'tqkvxpsaibxiqipn'  # os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'TestSite Team <noreply@example.com>'
+DEFAULT_FROM_EMAIL = f"All-Django Team <{os.environ.get('EMAIL_HOST_USER')}>" # 'TestSite Team <noreply@example.com>'
+
+# MAILCHIMP CONFIG
+MAILCHIMP_API_KEY = "c68cc4d896d760c468d62de88ab0c940-us7"
+MAILCHIMP_DATA_CENTER = "us7"
+MAILCHIMP_EMAIL_LIST_ID = "4dd3fadb19"
