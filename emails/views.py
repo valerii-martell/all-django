@@ -18,6 +18,8 @@ from django.core.mail import EmailMessage, send_mail, EmailMultiAlternatives
 
 from django.conf import settings
 
+from .token_generator import account_activation_token
+
 
 class Index(generic.TemplateView):
     template_name = 'emails_index.html'
@@ -72,3 +74,43 @@ class SendMailView(generic.TemplateView):
             'mail_form': self.mail_form
         }
         return render(request, 'send_mail_form.html', context)
+
+
+def usersignup(request):
+    if request.method == 'POST':
+        form = UserSignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            email_subject = 'Activate Your Account'
+            message = render_to_string('activate_account.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            to_email = form.cleaned_data.get('email')
+            email = EmailMessage(email_subject, message, to=[to_email])
+            email.send()
+            return HttpResponse(
+                'We have sent you an email, please confirm your email address to complete your registration')
+    else:
+        form = UserSignUpForm()
+    return render(request, 'signup.html', {'form': form})
+
+
+def activate_account(request, uidb64, token):
+    try:
+        uid = force_bytes(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        return HttpResponse('Your account has been activated successfully')
+    else:
+        return HttpResponse('Activation link is invalid!')
