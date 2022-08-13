@@ -152,7 +152,7 @@ def subscribe(email):
 def subscription(request):
     if request.method == "POST":
         email = request.POST['email']
-        print(email)
+        # print(email)
         subscribe(email)
         messages.success(request, "Email received. thank You! ")
 

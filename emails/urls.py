@@ -7,6 +7,7 @@ from .views import Index, SendMailView, ShowMailView, usersignup, activate_accou
 from django.contrib.auth import views as auth
 
 urlpatterns = [
+    path('', include('django.contrib.auth.urls')),
     path('', Index.as_view()),
     path('show-mail/', ShowMailView.as_view()),
     path('send-mail/', SendMailView.as_view()),
