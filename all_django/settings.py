@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'durationwidget',
     'phone_field',
+    'graphene_django',
     'index',
     'smoke',
     'routing',
@@ -62,8 +63,18 @@ INSTALLED_APPS = [
     'custom_user',
     # 'custom_admin',
     'frontend',
-    'emails'
+    'emails',
+    'graphql_api'
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'graphql_api.schema.schema'
+}
+
+# Solve Django 4 issue with force_text deprecated
+import django
+from django.utils.encoding import force_str
+django.utils.encoding.force_text = force_str
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
@@ -189,10 +200,10 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = f"All-Django Team <{os.environ.get('EMAIL_HOST_USER')}>" # 'TestSite Team <noreply@example.com>'
 
 # AWS CONFIG
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'email-smtp.us-east-2.amazonaws.com'
-EMAIL_HOST_USER = 'AKIA5ZT43BP5LNAO3QTY'
-EMAIL_HOST_PASSWORD = 'BFzrmpzbO6qEQc3yP8hcSYD5f2f/E8R/MBLxk6YEcQq6'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'email-smtp.us-east-2.amazonaws.com'
+# EMAIL_HOST_USER = 'AKIA5ZT43BP5LNAO3QTY'
+# EMAIL_HOST_PASSWORD = 'BFzrmpzbO6qEQc3yP8hcSYD5f2f/E8R/MBLxk6YEcQq6'
 
 
 # MAILCHIMP CONFIG

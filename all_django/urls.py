@@ -37,5 +37,6 @@ urlpatterns = [
     path('custom-admin/', include("custom_admin.urls")),
     path('frontend/', include("frontend.urls")),
     path('emails/', include("emails.urls")),
+    path('graphql/', include("graphql_api.urls")),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

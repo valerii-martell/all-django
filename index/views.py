@@ -26,6 +26,7 @@ def index(request):
             <p><a href="/custom-admin">013. Custom Admin panel</a></p>
             <p><a href="/frontend">014. Frontend</a></p>
             <p><a href="/emails">015. Emails</a></p>
+            <p><a href="/graphql">016. GraphQL</a></p>
         </body>
     </html>
     """

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Django - GraphQL</title>
+</head>
+<body>
+<h1>GraphQL index</h1>
+<p><a href="/">001. Back to main index</a></p>
+<p><a href="/graphql/graphql">002. Proceed to GraphQL interface</a></p>
+<h3>Test query example:</h3>
+<pre>
+{
+  makes{
+    edges{
+      node{
+     		name
+      }
+    }
+  }
+  models{
+    name
+  }
+  cars{
+    id
+    licensePlate
+    make{
+      name
+    }
+    model{
+      name
+    }
+  }
+  car(id: 1) {
+    id
+    licensePlate
+    make {
+      name
+    }
+    model {
+      name
+    }
+  }
+  econtains:makes(name_Icontains:"e"){
+    edges{
+      node{
+        name
+      }
+    }
+  }
+  dodge_make:makes(name:"Dodge"){
+    edges{
+      node{
+        name
+      }
+    }
+  }
+  ford:cars(make: "Ford"){
+    licensePlate
+  }
+}
+</pre>
+</body>
+</html>
