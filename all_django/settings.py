@@ -68,7 +68,7 @@ INSTALLED_APPS = [
 ]
 
 GRAPHENE = {
-    'SCHEMA': 'graphql_api.schema.schema'
+    'SCHEMA': 'schema.schema'
 }
 
 # Solve Django 4 issue with force_text deprecated

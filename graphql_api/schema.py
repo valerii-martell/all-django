@@ -2,7 +2,7 @@ import graphene
 from django.contrib.auth import get_user_model
 from graphene_django.filter import DjangoFilterConnectionField
 
-from .types import CarType, MakeType, ModelType #, UserType
+from .types import CarType, MakeType, ModelType  # , UserType
 from .models import Car, Make, Model
 
 
@@ -19,7 +19,7 @@ class Query(graphene.ObjectType):
     model = graphene.Field(ModelType, id=graphene.Int())
     models = graphene.List(ModelType)
     car = graphene.Field(CarType, id=graphene.Int())
-    cars = graphene.List(CarType, make=graphene.String()) # required=True)
+    cars = graphene.List(CarType, make=graphene.String())  # required=True)
 
     def __init__(self):
         dodge, _ = Make.objects.get_or_create(name="Dodge")
@@ -72,7 +72,6 @@ class Query(graphene.ObjectType):
         else:
             return Car.objects.all()
 
-
     def resolve_api_client(self, info):
         user = info.context.user
 
@@ -88,6 +87,3 @@ class Query(graphene.ObjectType):
         if not user.is_staff:
             raise Exception('Authentication Failure: Must be Manager')
         return get_user_model().objects.all()
-
-
-schema = graphene.Schema(query=Query)

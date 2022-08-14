@@ -18,7 +18,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import admin
 
 from graphene_django.views import GraphQLView
-from .schema import schema
+from all_django.schema import schema
 from .views import Index
 
 urlpatterns = [
