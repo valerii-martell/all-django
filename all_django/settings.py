@@ -9,7 +9,9 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import importlib
 import os
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
     'durationwidget',
     'phone_field',
     'graphene_django',
+    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     'index',
     'smoke',
     'routing',
@@ -64,17 +67,52 @@ INSTALLED_APPS = [
     # 'custom_admin',
     'frontend',
     'emails',
-    'graphql_api'
+    'graphql_api',
+]
+
+# Solve Django 4 issue with deprecated functions
+import django
+from django.utils.encoding import force_str
+from django.utils.translation import gettext, gettext_lazy
+django.utils.encoding.force_text = force_str
+django.utils.translation.ugettext, django.utils.translation.ugettext_lazy = gettext, gettext_lazy
+# Solve graphql_jwt issue with deprecated in Django 4 providing_args parameter in dispatch.Signal constructor
+# import sys
+# from graphql_jwt.signals import
+# del sys.modules['graphql_jwt.signals']
+# sys.modules['graphql_jwt.signals'] = __import__('signals')
+# import graphql_jwt.signals
+# module = importlib.import_module(graphql_jwt.signals)
+# graphql_jwt.signals.token_issued = django.dispatch.Signal(['request', 'user'])
+# graphql_jwt.signals.token_refreshed = django.dispatch.Signal(['request', 'user'])
+# import graphql_jwt.signals
+# graphql_jwt.signals.__dict__['token_issued'] = django.dispatch.Signal(['request', 'user'])
+# graphql_jwt.signals.__dict__['token_refreshed'] = django.dispatch.Signal(['request', 'user'])
+
+
+# AUTH_USER_MODEL = 'graphql_api.ApiClient'
+
+AUTHENTICATION_BACKENDS = [
+    # 'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend'
 ]
 
 GRAPHENE = {
-    'SCHEMA': 'schema.schema'
+    'SCHEMA': 'schema.schema',
+    # 'MIDDLEWARE': [
+    #     'graphql_jwt.middleware.JSONWebTokenMiddleware'
+    # ]
 }
 
-# Solve Django 4 issue with force_text deprecated
-import django
-from django.utils.encoding import force_str
-django.utils.encoding.force_text = force_str
+GRAPHQL_JWT = {
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
+    'JWT_EXPIRATION_DELTA': timedelta(days=1),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
+    'JWT_SECRET_KEY': SECRET_KEY,
+    'JWT_ALGORITHM': 'HS256',
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
@@ -197,7 +235,7 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = f"All-Django Team <{os.environ.get('EMAIL_HOST_USER')}>" # 'TestSite Team <noreply@example.com>'
+DEFAULT_FROM_EMAIL = f"All-Django Team <{os.environ.get('EMAIL_HOST_USER')}>"  # 'TestSite Team <noreply@example.com>'
 
 # AWS CONFIG
 # EMAIL_USE_TLS = True

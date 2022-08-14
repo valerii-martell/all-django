@@ -8,6 +8,8 @@ Django==4.0.6
 django-admin-index==2.0.2
 django-durationwidget==1.0.5
 django-filter==22.1
+django-graphql-auth==0.3.16
+django-graphql-jwt==0.3.4
 django-grappelli==3.0.3
 django-inlinecss==0.3.0
 django-ordered-model==3.6
@@ -26,6 +28,7 @@ Markdown==3.4.1
 MarkupSafe==2.1.1
 Pillow==9.2.0
 promise==2.3
+PyJWT==2.4.0
 pynliner==0.8.0
 python-dateutil==2.8.2
 pytz==2022.1

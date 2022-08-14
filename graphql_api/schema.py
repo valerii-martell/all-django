@@ -2,7 +2,7 @@ import graphene
 from django.contrib.auth import get_user_model
 from graphene_django.filter import DjangoFilterConnectionField
 
-from .types import CarType, MakeType, ModelType  # , UserType
+from .types import CarType, MakeType, ModelType, UserType
 from .models import Car, Make, Model
 
 
@@ -13,8 +13,8 @@ class Query(graphene.ObjectType):
     # make = graphene.Field(MakeType, id=graphene.Int())
     # makes = graphene.List(MakeType)
 
-    # api_client = graphene.Field(UserType)
-    # api_clients = graphene.List(UserType)
+    api_client = graphene.Field(UserType)
+    api_clients = graphene.List(UserType)
 
     model = graphene.Field(ModelType, id=graphene.Int())
     models = graphene.List(ModelType)

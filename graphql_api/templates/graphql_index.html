@@ -1,104 +1,179 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>All Django - GraphQL</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Custom css -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src='{% static "js/jquery.min.js" %}'></script>
+    <script type="text/javascript" src='{% static "js/popper.min.js" %}'></script>
+    <script type="text/javascript" src='{% static "js/bootstrap.min.js" %}'></script>
+    <script type="text/javascript" src='{% static "js/Chart.min.js" %}'></script>
 </head>
 <body>
-<h1>GraphQL index</h1>
-<p><a href="/">001. Back to main index</a></p>
-<p>
-    <a href="/graphql/graphql/">002. Proceed to GraphQL interface</a></p>
-<h3>Test CRUD queries examples:</h3>
-<pre>
-query TestQuery{
-  makes{
-    edges{
-      node{
-        id
-     		name
-      }
-    }
-  }
-  models{
-    name
-  }
-  cars{
-    id
-    licensePlate
-    make{
-      name
-    }
-    model{
-      name
-    }
-  }
-  car(id: 1) {
-    id
-    licensePlate
-    make {
-      name
-    }
-    model {
-      name
-    }
-  }
-  econtains:makes(name_Icontains:"e"){
-    edges{
-      node{
-        name
-      }
-    }
-  }
-  dodge_make:makes(name:"Dodge"){
-    edges{
-      node{
-        name
-      }
-    }
-  }
-  dodge:cars(make: "Dodge"){
-    licensePlate
-  }
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">All Django - GraphQL Index</h1>
+        <p style="margin-top: 4vh">
+        <div class="row">
+            <div class="col-lg-3">
+                <p>
+                    <a id="next" class="btn btn-primary btn-lg" href="/" role="button">Back to main index »</a>
+                </p>
+            </div>
+            <div class="col-lg-4">
+                <p>
+                    <a class="btn btn-lg btn-success"
+                       href="/graphql/graphql/" role="button">Proceed to GraphQL interface »</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-sm-4">
+                <h3>Test queries example</h3>
+                <pre>
+                query TestQuery{
+                  makes{
+                    edges{
+                      node{
+                        id
+                          name
+                      }
+                    }
+                  }
+                  models{
+                    name
+                  }
+                  cars{
+                    id
+                    licensePlate
+                    make{
+                      name
+                    }
+                    model{
+                      name
+                    }
+                  }
+                  car(id: 1) {
+                    id
+                    licensePlate
+                    make {
+                      name
+                    }
+                    model {
+                      name
+                    }
+                  }
+                  econtains:makes(name_Icontains:"e"){
+                    edges{
+                      node{
+                        name
+                      }
+                    }
+                  }
+                  dodge_make:makes(name:"Dodge"){
+                    edges{
+                      node{
+                        name
+                      }
+                    }
+                  }
+                  dodge:cars(make: "Dodge"){
+                    licensePlate
+                  }
+                }
+            </pre>
+            </div>
+            <div class="col-sm-4">
+                <h3>Test mutations example</h3>
+                <pre>
+                    mutation TestCreateMutation{
+                        createMake(
+                            input:{
+                                name:"Pontiac Create"
+                            }
+                        ){
+                            ok
+                            make{
+                                id
+                                name
+                            }
+                         }
+                        }
 
-}
+                    mutation TestUpdateMutation{
+                        updateMake(
+                            id:3,
+                            input:{
+                                name:"GMC Update"
+                            }
+                        ){
+                            ok
+                            make{
+                                id
+                                name
+                            }
+                        }
+                    }
 
-mutation TestCreateMutation{
-  createMake(
-    input:{
-      name:"Pontiac Create"
-    }
-  ){
-    ok
-  	make{
-      id
-      name
-    }
-	}
-}
+                    mutation TestDeleteMutation{
+                        deleteMake(
+                            id:3,
+                        ){
+                            ok
+                        }
+                    }
+                </pre>
+            </div>
+            <div class="col-sm-4">
+                <h3>Create user, login, token verify. via API example</h3>
+                <pre>
+                query UserList{
+                  apiClients{
+                    username
+                    email
+                  }
+                }
 
-mutation TestUpdateMutation{
-  updateMake(
-    id:3,
-    input:{
-      name:"GMC Update"
-    }
-  ){
-    ok
-  	make{
-      id
-      name
-    }
-	}
-}
+                mutation CreateUser{
+                  createUser(password: "password1111", username: "username1111", email:"test1111@test.com") {
+                    refreshToken
+                    token
+                    user{
+                      username
+                      email
+                      password
+                      firstName
+                      lastName
+                      isActive
+                      isStaff
+                      isSuperuser
+                    }
+                  }
+                }
 
-mutation TestDeleteMutation{
-  deleteMake(
-    id:3,
-  ){
-    ok
-	}
-}
-</pre>
+                mutation VerifyToken{
+                  verifyToken(token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lMTExMSIsImV4cCI6MTY2MDYwMDQwMiwib3JpZ0lhdCI6MTY2MDUxNDAwMn0.XZJbwlXQ9zIvyW-0khJn1kHn6qQ4cTXNso-R7SbZ8Rs"){
+                    payload
+                  }
+                }
+
+                mutation LoginUser{
+                  tokenAuth(password: "password1111", username: "username1111") {
+                    token
+                    refreshToken
+                  }
+                }
+            </pre>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

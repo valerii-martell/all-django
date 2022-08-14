@@ -26,7 +26,7 @@ class CarType(DjangoObjectType):
         fields = ("id", "license_plate", "make", "model")
 
 
-# class UserType(DjangoObjectType):
-#     class Meta:
-#         model = get_user_model()
+class UserType(DjangoObjectType):
+    class Meta:
+        model = get_user_model()
 

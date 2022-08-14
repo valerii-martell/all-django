@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
 
 
 # from .managers import UserManager
@@ -23,6 +23,17 @@ from django.contrib.auth.models import AbstractUser
 #
 #     def __str__(self):
 #         return f"{self.pk}_{self.email}"
+
+
+class ApiClient(User):
+    # email = models.EmailField("email address", unique=True)
+
+    class Meta:
+        verbose_name = "GraphQL API client"
+        verbose_name_plural = "GraphQL API clients"
+    #
+    # def __str__(self):
+    #     return f"{self.pk}_{self.email}"
 
 
 class Make(models.Model):
