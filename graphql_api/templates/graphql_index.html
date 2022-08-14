@@ -7,13 +7,15 @@
 <body>
 <h1>GraphQL index</h1>
 <p><a href="/">001. Back to main index</a></p>
-<p><a href="/graphql/graphql">002. Proceed to GraphQL interface</a></p>
-<h3>Test query example:</h3>
+<p>
+    <a href="/graphql/graphql/">002. Proceed to GraphQL interface</a></p>
+<h3>Test CRUD queries examples:</h3>
 <pre>
-{
+query TestQuery{
   makes{
     edges{
       node{
+        id
      		name
       }
     }
@@ -55,9 +57,47 @@
       }
     }
   }
-  ford:cars(make: "Ford"){
+  dodge:cars(make: "Dodge"){
     licensePlate
   }
+
+}
+
+mutation TestCreateMutation{
+  createMake(
+    input:{
+      name:"Pontiac Create"
+    }
+  ){
+    ok
+  	make{
+      id
+      name
+    }
+	}
+}
+
+mutation TestUpdateMutation{
+  updateMake(
+    id:3,
+    input:{
+      name:"GMC Update"
+    }
+  ){
+    ok
+  	make{
+      id
+      name
+    }
+	}
+}
+
+mutation TestDeleteMutation{
+  deleteMake(
+    id:3,
+  ){
+    ok
+	}
 }
 </pre>
 </body>
