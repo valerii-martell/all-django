@@ -1,0 +1,17 @@
+{% extends 'farm/base_farm.html' %}
+
+{% block content %}
+    <h2>Bots List</h2>
+
+    <ul>
+        {% for bot in object_list %}
+            <li>Email: {{ bot.email }}
+                </br>
+                Password: {{ bot.password }}
+            </li>
+        {% empty %}
+            <li>No bots. <a href="{% url 'generate' %}">Generate some random
+                bots.</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

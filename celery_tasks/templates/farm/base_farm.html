@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>All Django - Celery - Bots Farm</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+<h1>Django Bot Farm</h1>
+<a href="{% url 'bots_list' %}">Bots List</a> /
+<a href="{% url 'generate' %}">Generate Random Bots</a>
+<hr>
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color: green">{{ message }}</p>
+    {% endfor %}
+    <hr>
+{% endif %}
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

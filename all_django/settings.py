@@ -15,6 +15,8 @@ from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from session_cleanup.settings import nightly_schedule
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
@@ -53,6 +55,7 @@ INSTALLED_APPS = [
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     'django_celery_results',
     'django_celery_beat',
+    'session_cleanup',
     'index',
     'smoke',
     'routing',
@@ -139,6 +142,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'all_django.urls'
 
+# 1 hour = 3600 sec
 SESSION_COOKIE_AGE = 3600
 
 # Redis
@@ -166,7 +170,7 @@ CELERY_BEAT_SCHEDULE = {
     "weather": {
         "task": "celery_tasks.tasks.fetch_weather",
         "schedule": 20.0,
-        # 'session_cleanup': nightly_schedule
+        'session_cleanup': nightly_schedule
     },
 }
 
