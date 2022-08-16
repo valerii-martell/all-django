@@ -7,31 +7,7 @@ from django.template import loader
 
 
 def routing_index(request):
-    _html = """
-    <html>
-        <head>
-            <title>
-                Django routing
-            </title>
-        </head>
-        <body>
-            <h1>Routing index:</h1>
-            <p><a href="/">001. Back to main index</a></p>
-            <p><a href="/routing/redirect">002. Redirect</a></p>
-            <p><a href="/routing/text">003. Text Response</a></p>
-            <p><a href="/routing/file-response">004. File Response</a></p>
-            <p><a href="/routing/json">005. JSON Response</a></p>
-            <p><a href="/routing/not-allowed">006. Not allowed</a></p>
-            <p><a href="/routing/function/1996/08/30">007. Function with parameters /year/month/day or / - default values </a></p>
-            <p><a href="/routing/render-html">008. Render HTML string </a></p>
-            <p><a href="/routing/render-template">009. Render HTML template </a></p>
-            <p><a href="/routing/render-to-string">010. Render to string </a></p>
-            <p><a href="/routing/request-properties">011. Request additional properties </a></p>
-        </body>
-    </html>
-    """
-
-    return HttpResponse(_html)
+    return render(request, 'routing_index.html', {})
 
 
 def http_redirect(request):
@@ -107,3 +83,11 @@ def not_allowed(request):
 
 def json(request):
     return JsonResponse({i: i + i for i in range(1, 20)}, safe=False)
+
+
+def api(request):
+    return JsonResponse({'subdomain': 'api'}, safe=False)
+
+
+def beta(request):
+    return HttpResponse("Beta subdomain")

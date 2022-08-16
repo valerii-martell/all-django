@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'django_celery_results',
     'django_celery_beat',
     'session_cleanup',
+    'django_hosts',
     'index',
     'smoke',
     'routing',
@@ -131,6 +132,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,7 +140,22 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware',
 ]
+
+DEFAULT_HOST = 'www'
+ROOT_HOSTCONF = 'routing.hosts'
+# import socket
+# try:
+#     PARENT_HOST = socket.gethostname()
+# except:
+#     PARENT_HOST = 'localhost'
+
+# from django.contrib.sites.models import Site
+#
+# current_site = Site.objects.get_current()
+# PARENT_HOST = current_site.domain
+PARENT_HOST = 'localhost:8000'
 
 ROOT_URLCONF = 'all_django.urls'
 
