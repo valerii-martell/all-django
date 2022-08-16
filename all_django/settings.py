@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'graphene_django',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     'django_celery_results',
+    'django_celery_beat',
     'index',
     'smoke',
     'routing',
@@ -69,7 +70,7 @@ INSTALLED_APPS = [
     'frontend',
     'emails',
     'graphql_api',
-    'celery_redis'
+    'celery_tasks'
 ]
 
 # Solve Django 4 issue with deprecated functions
@@ -95,15 +96,15 @@ django.utils.translation.ugettext, django.utils.translation.ugettext_lazy = gett
 # AUTH_USER_MODEL = 'graphql_api.ApiClient'
 
 AUTHENTICATION_BACKENDS = [
-    # 'graphql_jwt.backends.JSONWebTokenBackend',
+    'graphql_jwt.backends.JSONWebTokenBackend',
     'django.contrib.auth.backends.ModelBackend'
 ]
 
 GRAPHENE = {
     'SCHEMA': 'schema.schema',
-    # 'MIDDLEWARE': [
-    #     'graphql_jwt.middleware.JSONWebTokenMiddleware'
-    # ]
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware'
+    ]
 }
 
 GRAPHQL_JWT = {
@@ -153,21 +154,24 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Europe/Amsterdam'
 
-# CELERY_BEAT_SCHEDULE = {
-#     "weather": {
-#         "task": "celery_redis.tasks.fetch_weather",
-#         "schedule": 20.0,
-#         'session_cleanup': nightly_schedule
-#     },
-# }
-
 # celery -A all_django worker -l DEBUG/INFO
-# from celery_redis.tasks import fibon
+# from celery_tasks.tasks import fibon
 # task = fibon.delay(100000)
 # task.get()
 # celery -A all_django events
 # pip install flower
 # celery flower (localhost:5555)
+
+CELERY_BEAT_SCHEDULE = {
+    "weather": {
+        "task": "celery_tasks.tasks.fetch_weather",
+        "schedule": 20.0,
+        # 'session_cleanup': nightly_schedule
+    },
+}
+
+# celery -A all_django worker --beat --scheduler django --loglevel=info (command starts both celery and beats)
+
 
 TEMPLATES = [
     {
