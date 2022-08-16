@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'phone_field',
     'graphene_django',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
+    'django_celery_results',
     'index',
     'smoke',
     'routing',
@@ -68,6 +69,7 @@ INSTALLED_APPS = [
     'frontend',
     'emails',
     'graphql_api',
+    'celery_redis'
 ]
 
 # Solve Django 4 issue with deprecated functions
@@ -135,6 +137,29 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'all_django.urls'
+
+SESSION_COOKIE_AGE = 3600
+
+# Redis
+# CELERY_BROKER_URL = "redis://localhost:6379"
+# CELERY_RESULT_BACKEND = 'redis'
+
+# RabbitMQ
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'
+CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Amsterdam'
+
+# CELERY_BEAT_SCHEDULE = {
+#     "weather": {
+#         "task": "celery_redis.tasks.fetch_weather",
+#         "schedule": 20.0,
+#         'session_cleanup': nightly_schedule
+#     },
+# }
 
 TEMPLATES = [
     {

@@ -38,5 +38,6 @@ urlpatterns = [
     path('frontend/', include("frontend.urls")),
     path('emails/', include("emails.urls")),
     path('graphql/', include("graphql_api.urls")),
+    # path('celery-redis/', include("celery_redis.urls")),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
