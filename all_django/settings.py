@@ -161,6 +161,14 @@ CELERY_TIMEZONE = 'Europe/Amsterdam'
 #     },
 # }
 
+# celery -A all_django worker -l DEBUG/INFO
+# from celery_redis.tasks import fibon
+# task = fibon.delay(100000)
+# task.get()
+# celery -A all_django events
+# pip install flower
+# celery flower (localhost:5555)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
