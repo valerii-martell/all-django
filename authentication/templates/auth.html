@@ -28,10 +28,10 @@
     </style>
 </head>
 {% if user.is_authenticated  %}
-<a href="logout">выйти({{user.username}})</a>
+<a href="logout">Logout({{user.username}})</a>
 {% else %}
-<a href="register">Регистрация на сайте</a>
-<a href="login">Авторизация</a>
+<a href="register">Signup</a>
+<a href="login">Login</a>
 {% endif %}
 
 {% for elem in humans %}

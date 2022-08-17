@@ -8,7 +8,8 @@ def channels_index(request):
 
 
 def chat(request):
-    return render(request, 'chat/chat.html')
+    rooms = Room.objects.all()
+    return render(request, 'chat/chat.html', {'rooms':rooms})
 
 
 def room(request, room_name):
