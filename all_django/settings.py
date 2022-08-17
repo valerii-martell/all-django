@@ -211,6 +211,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'all_django.wsgi.application'
 ASGI_APPLICATION = 'all_django.asgi.application'
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 
 # LINUX
 CHANNEL_LAYERS = {

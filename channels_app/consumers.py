@@ -1,5 +1,5 @@
 import json
-from datetime import date
+from datetime import datetime
 
 from channels.db import database_sync_to_async
 
@@ -22,11 +22,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.accept()
         data = await self.get_historical_data()
 
-        for timestamp, message in data.items():
+        for message_obj in data:
             await self.send(text_data=json.dumps({
-                'message': message,
-                'date': str(timestamp),
-                'user': self.user.username,
+                'message': message_obj.text,
+                'date': str(message_obj.timestamp),
+                'user': message_obj.user.username,
             }))
 
     async def disconnect(self, close_code):
@@ -52,7 +52,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         await self.send(text_data=json.dumps({
             'message': message,
-            'date': str(date.today()),
+            'date': str(datetime.now()),
             'user': self.user.username
         }))
 
@@ -63,9 +63,4 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     @database_sync_to_async
     def get_historical_data(self):
-        return dict(
-            Message.objects.filter(user=self.user,
-                                   room=Room.objects.get(
-                                       name=self.room_name)).values_list(
-                'timestamp',
-                'text'))
+        return Message.objects.filter(room=Room.objects.get(name=self.room_name))
