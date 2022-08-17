@@ -9,7 +9,7 @@
           crossorigin="anonymous">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Chat Room</title>
+    <title>Chat Room {{ room_name }}</title>
 </head>
 <body>
 <div class="form-floating">
@@ -57,13 +57,13 @@
         + '/'
     );
 
-    {#const likesSocket = new WebSocket(#}
-    {#    'ws://'#}
-    {#    + window.location.host#}
-    {#    + '/ws/likes/'#}
-    {#    + roomName#}
-    {#    + '/'#}
-    {#);#}
+    const likesSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/likes/'
+        + roomName
+        + '/'
+    );
 
     chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
@@ -92,17 +92,17 @@
         messageInputDom.value = '';
     };
 
-    {#function setDislike(x) {#}
-    {#    likesSocket.send(JSON.stringify({#}
-    {#        'dislike': 1#}
-    {#    }));#}
-    {#}#}
-    {##}
-    {#function setLike(x) {#}
-    {#    likesSocket.send(JSON.stringify({#}
-    {#        'like': 1#}
-    {#    }));#}
-    {#}#}
+    function setDislike(x) {
+        likesSocket.send(JSON.stringify({
+            'dislike': 1
+        }));
+    }
+
+    function setLike(x) {
+        likesSocket.send(JSON.stringify({
+            'like': 1
+        }));
+    }
 
 
 </script>

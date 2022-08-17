@@ -13,10 +13,17 @@
 What chat room would you like to enter? Type name to create or join to existing room<br>
 <input id="room-name-input" type="text" size="100"><br>
 <input id="room-name-submit" type="button" value="Enter">
-<p><a href="/channels/chat/lobby">Lobby</a></p>
+<p><a href="/channels/chat/lobby">Lobby</a>
+{% for room in rooms %}
+    {% if room.name == "lobby" %}
+        Likes: {{ room.likes }} Dislikes: {{ room.dislikes }}
+    {% endif %}
+{% endfor %}
+</p>
 {% for room in rooms %}
     {% if room.name != "lobby" %}
-        <li><a href="/channels/chat/{{ room.name }}">{{ room.name }}</a></li>
+        <li><a href="/channels/chat/{{ room.name }}">{{ room.name }}</a> Likes: {{ room.likes }}
+            Dislikes: {{ room.dislikes }}</li>
     {% endif %}
 {% endfor %}
 <script>
