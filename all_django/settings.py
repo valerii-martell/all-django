@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 'django_admin_index',
     # 'custom_admin.apps.SuitConfig',
     'custom_admin',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,28 +75,9 @@ INSTALLED_APPS = [
     'frontend',
     'emails',
     'graphql_api',
-    'celery_tasks'
+    'celery_tasks',
+    'channels_app'
 ]
-
-# Solve Django 4 issue with deprecated functions
-import django
-from django.utils.encoding import force_str
-from django.utils.translation import gettext, gettext_lazy
-django.utils.encoding.force_text = force_str
-django.utils.translation.ugettext, django.utils.translation.ugettext_lazy = gettext, gettext_lazy
-# Solve graphql_jwt issue with deprecated in Django 4 providing_args parameter in dispatch.Signal constructor
-# import sys
-# from graphql_jwt.signals import
-# del sys.modules['graphql_jwt.signals']
-# sys.modules['graphql_jwt.signals'] = __import__('signals')
-# import graphql_jwt.signals
-# module = importlib.import_module(graphql_jwt.signals)
-# graphql_jwt.signals.token_issued = django.dispatch.Signal(['request', 'user'])
-# graphql_jwt.signals.token_refreshed = django.dispatch.Signal(['request', 'user'])
-# import graphql_jwt.signals
-# graphql_jwt.signals.__dict__['token_issued'] = django.dispatch.Signal(['request', 'user'])
-# graphql_jwt.signals.__dict__['token_refreshed'] = django.dispatch.Signal(['request', 'user'])
-
 
 # AUTH_USER_MODEL = 'graphql_api.ApiClient'
 
@@ -228,6 +210,25 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'all_django.wsgi.application'
+ASGI_APPLICATION = 'all_django.asgi.application'
+
+# LINUX
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379')],
+        },
+    },
+}
+
+# WINDOWS
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels.layers.InMemoryChannelLayer",
+#     }
+# }
+
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -306,3 +307,23 @@ DEFAULT_FROM_EMAIL = f"All-Django Team <{os.environ.get('EMAIL_HOST_USER')}>"  #
 MAILCHIMP_API_KEY = "c68cc4d896d760c468d62de88ab0c940-us7"
 MAILCHIMP_DATA_CENTER = "us7"
 MAILCHIMP_EMAIL_LIST_ID = "4dd3fadb19"
+
+# Solve Django 4 issue with deprecated functions
+import django
+from django.utils.encoding import force_str
+from django.utils.translation import gettext, gettext_lazy
+
+django.utils.encoding.force_text = force_str
+django.utils.translation.ugettext, django.utils.translation.ugettext_lazy = gettext, gettext_lazy
+# Solve graphql_jwt issue with deprecated in Django 4 providing_args parameter in dispatch.Signal constructor
+# import sys
+# from graphql_jwt.signals import
+# del sys.modules['graphql_jwt.signals']
+# sys.modules['graphql_jwt.signals'] = __import__('signals')
+# import graphql_jwt.signals
+# module = importlib.import_module(graphql_jwt.signals)
+# graphql_jwt.signals.token_issued = django.dispatch.Signal(['request', 'user'])
+# graphql_jwt.signals.token_refreshed = django.dispatch.Signal(['request', 'user'])
+# import graphql_jwt.signals
+# graphql_jwt.signals.__dict__['token_issued'] = django.dispatch.Signal(['request', 'user'])
+# graphql_jwt.signals.__dict__['token_refreshed'] = django.dispatch.Signal(['request', 'user'])

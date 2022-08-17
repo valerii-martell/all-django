@@ -27,7 +27,8 @@ def index(request):
             <p><a href="/frontend">014. Frontend</a></p>
             <p><a href="/emails">015. Emails</a></p>
             <p><a href="/graphql">016. GraphQL</a></p>
-            <p><a href="/celery">017. Celery (Redis/RabbitMQ)</a></p>
+            <p><a href="/celery">017. Celery (with either Redis/RabbitMQ)</a></p>
+            <p><a href="/channels">018. Django channels (with Redis))</a></p>
         </body>
     </html>
     """
