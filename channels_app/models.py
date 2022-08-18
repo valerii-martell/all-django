@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 
 
 class Room(models.Model):
-    name = models.TextField()
+    name = models.TextField(unique=True, db_index=True)
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
 

@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import CreateAPIView, RetrieveAPIView, RetrieveUpdateAPIView
@@ -11,8 +11,10 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 from rest_framework.views import APIView
 
+from graphql_api.models import Make, Car, Model
 from orm.models import GameModel, GamerModel
-from .serializers import GameModelSerializer, GamerModelSerializer, UserSerializer
+from .serializers import GameModelSerializer, GamerModelSerializer, UserSerializer, MakeSerializer, CarSerializer, \
+    ModelSerializer
 
 
 def api_index(request):
@@ -118,3 +120,30 @@ def user_login(request):
 class CreateUser(CreateAPIView):
     permission_classes = (AllowAny,)
     serializer_class = UserSerializer
+
+
+def send_email(test):
+    print("email is send")
+
+
+class ModelViewSet(viewsets.ModelViewSet):
+    queryset = Model.objects.all().order_by('-name')
+    serializer_class = ModelSerializer
+    # authentication_classes = (TokenAuthentication,)
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        send_email('my value 1')
+        return super(ModelViewSet, self).get_queryset()
+
+
+class MakeViewSet(viewsets.ModelViewSet):
+    queryset = Make.objects.all().order_by('-name')
+    serializer_class = MakeSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class CarViewSet(viewsets.ModelViewSet):
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer
+    permission_classes = [permissions.IsAuthenticated]

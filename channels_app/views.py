@@ -3,7 +3,10 @@ from .models import Room
 
 
 def channels_index(request):
-    lobby, _ = Room.objects.get_or_create(name="lobby", likes=0, dislikes=0)
+    try:
+        lobby, _ = Room.objects.get_or_create(name="lobby")
+    except:
+        pass
     return render(request, 'channels_index.html', {})
 
 
