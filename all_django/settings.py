@@ -88,7 +88,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 GRAPHENE = {
-    'SCHEMA': 'schema.schema',
+    'SCHEMA': 'all_django.schema.schema',
     'MIDDLEWARE': [
         'graphql_jwt.middleware.JSONWebTokenMiddleware'
     ]
@@ -110,8 +110,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',)
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',)
 }
 
 MIDDLEWARE = [
@@ -234,12 +234,34 @@ CHANNEL_LAYERS = {
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+DATABASE_ROUTERS = (
+    'orm.dbrouters.PostgreSQLDBRouter',
+    'graphql_api.dbrouters.MySQLDBRouter',
+)
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'postgresql_db': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('POSTGRESQL_HOST'),
+        'NAME': os.environ.get('POSTGRESQL_DATABASE'),
+        'USER': os.environ.get('POSTGRESQL_USER'),
+        'PASSWORD': os.environ.get('POSTGRESQL_PASSWORD'),
+        'PORT': os.environ.get('POSTGRESQL_PORT'),
+        'OPTIONS': {'sslmode': 'require'},
+    },
+    'mysql_db': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': os.environ.get('MYSQL_HOST'),
+        'NAME': os.environ.get('MYSQL_DATABASE'),
+        'USER': os.environ.get('MYSQL_USER'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
+        'PORT': os.environ.get('MYSQL_PORT'),
+        'OPTIONS': {'ssl': True},
+    },
 }
 
 # Password validation

@@ -84,3 +84,8 @@ class GamerModel(models.Model):
 
     def __str__(self):
         return f"{self.id}_{self.nickname}"
+
+
+# GamerModel.objects = GamerModel.objects.using('postgresql')
+# GamerLibraryModel.objects = GamerLibraryModel.objects.using('postgresql')
+# GameModel.objects = GameModel.objects.using('postgresql')

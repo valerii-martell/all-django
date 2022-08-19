@@ -63,3 +63,8 @@ class Car(models.Model):
 
     def __str__(self):
         return f"{self.license_plate}_{self.make.name}_{self.model.name}"
+
+
+# Make.objects = Make.objects.using('mysql_db')
+# Model.objects = Model.objects.using('mysql_db')
+# Car.objects = Car.objects.using('mysql_db')
