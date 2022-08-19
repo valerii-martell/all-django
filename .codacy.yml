@@ -1,0 +1,22 @@
+---
+engines:
+  duplication:
+    enabled: true
+exclude_paths:
+  - "static/**"
+  - "media/**"
+  - "templates/**"
+  - "**/static/**"
+  - "**/media/**"
+  - "**/migrations/**"
+  - "**/templates/**"
+  - "README.md"
+  - "run.sh"
+  - "config.py"
+  - "manage.py"
+  - "**/settings.py"
+  - "Dockerfile"
+  - "docker-compose.yml"
+  - "**.css*"
+  - "**.html*"
+  - "**.js*"
