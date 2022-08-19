@@ -7,7 +7,11 @@ from drf_yasg.views import get_schema_view
 from rest_framework import viewsets, permissions
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.generics import CreateAPIView, RetrieveAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import (
+    CreateAPIView,
+    RetrieveAPIView,
+    RetrieveUpdateAPIView,
+)
 from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
@@ -15,8 +19,14 @@ from rest_framework.views import APIView
 
 from graphql_api.models import Make, Car, Model
 from orm.models import GameModel, GamerModel
-from .serializers import GameModelSerializer, GamerModelSerializer, UserSerializer, MakeSerializer, CarSerializer, \
-    ModelSerializer
+from .serializers import (
+    GameModelSerializer,
+    GamerModelSerializer,
+    UserSerializer,
+    MakeSerializer,
+    CarSerializer,
+    ModelSerializer,
+)
 
 
 def api_index(request):
@@ -51,7 +61,7 @@ def api_index(request):
 schema_view = get_schema_view(
     openapi.Info(
         title="All Django API Swagger",
-        default_version='v1',
+        default_version="v1",
         description="All Django - Swagger API UI Docs",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="valerii.martell@gmail.com"),
@@ -63,7 +73,7 @@ schema_view = get_schema_view(
 
 
 class GameViewSet(viewsets.ModelViewSet):
-    queryset = GameModel.objects.all().order_by('-year')
+    queryset = GameModel.objects.all().order_by("-year")
     serializer_class = GameModelSerializer
 
 
@@ -73,21 +83,20 @@ class GamerViewSet(viewsets.ModelViewSet):
 
 
 @csrf_exempt
-@api_view(['GET', 'POST'])
+@api_view(["GET", "POST"])
 # @api_view()
 def view_function(request):
     # print(request.data)
-    return Response({'test': 'some_function_data'})
+    return Response({"test": "some_function_data"})
 
 
 class ClassAPIView(APIView):
-
     def get(self, request):
-        return Response({'class': 'some_class_data'})
+        return Response({"class": "some_class_data"})
 
     def post(self, request):
         # print(request.data)
-        return Response({'class': 'some_class_data'})
+        return Response({"class": "some_class_data"})
 
 
 class ViewSetAPIView(viewsets.ViewSet):
@@ -125,13 +134,13 @@ def user_login(request):
     username = request.data.get("username")
     password = request.data.get("password")
     if username is None or password is None:
-        return Response({'error': 'Both username and password are required'})
+        return Response({"error": "Both username and password are required"})
     user = authenticate(username=username, password=password)
     if not user:
-        return Response({'error': 'Invalid data'})
+        return Response({"error": "Invalid data"})
 
     token, _ = Token.objects.get_or_create(user=user)
-    return Response({'token': token.key}, status=HTTP_200_OK)
+    return Response({"token": token.key}, status=HTTP_200_OK)
 
 
 class CreateUser(CreateAPIView):
@@ -144,18 +153,18 @@ def send_email(test):
 
 
 class ModelViewSet(viewsets.ModelViewSet):
-    queryset = Model.objects.all().order_by('-name')
+    queryset = Model.objects.all().order_by("-name")
     serializer_class = ModelSerializer
     # authentication_classes = (TokenAuthentication,)
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        send_email('my value 1')
+        send_email("my value 1")
         return super(ModelViewSet, self).get_queryset()
 
 
 class MakeViewSet(viewsets.ModelViewSet):
-    queryset = Make.objects.all().order_by('-name')
+    queryset = Make.objects.all().order_by("-name")
     serializer_class = MakeSerializer
     permission_classes = [permissions.IsAuthenticated]
 

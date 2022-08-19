@@ -5,15 +5,16 @@ class PostgreSQLDBRouter(object):
     """
     A router to control all database operations on models in some applications.
     """
+
     # router_models = [GameModel, GamerModel, GamerLibraryModel]
-    route_app_labels = {'orm'}
+    route_app_labels = {"orm"}
 
     def db_for_read(self, model, **hints):
         """
         Attempts to read models from postgresql.
         """
         if model._meta.app_label in self.route_app_labels:
-            return 'postgresql_db'
+            return "postgresql_db"
         # if model in self.router_models:
         #     return 'postgresql_db'
         return None
@@ -23,7 +24,7 @@ class PostgreSQLDBRouter(object):
         Attempts to write models go to postgresql.
         """
         if model._meta.app_label in self.route_app_labels:
-            return 'postgresql_db'
+            return "postgresql_db"
         # if model in self.router_models:
         #     return 'postgresql_db'
         return None
@@ -34,8 +35,8 @@ class PostgreSQLDBRouter(object):
         involved.
         """
         if (
-                obj1._meta.app_label in self.route_app_labels or
-                obj2._meta.app_label in self.route_app_labels
+            obj1._meta.app_label in self.route_app_labels
+            or obj2._meta.app_label in self.route_app_labels
         ):
             return True
         return None
@@ -46,5 +47,5 @@ class PostgreSQLDBRouter(object):
         'postgresql' database.
         """
         if app_label in self.route_app_labels:
-            return db == 'postgresql_db'
+            return db == "postgresql_db"
         return None

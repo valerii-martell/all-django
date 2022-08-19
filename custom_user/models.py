@@ -17,7 +17,7 @@ class Person(User):
 
     class Meta:
         proxy = True
-        ordering = ('first_name',)
+        ordering = ("first_name",)
 
     def do_something(self):
         print(self.username)
@@ -25,10 +25,10 @@ class Person(User):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = PhoneField(blank=True, help_text='Contact phone number')
+    phone = PhoneField(blank=True, help_text="Contact phone number")
     birthday = models.DateField(blank=True, null=True)
     email = models.EmailField(max_length=150)
-    photo = models.ImageField(upload_to='profile_pics')
+    photo = models.ImageField(upload_to="profile_pics")
     bio = models.TextField()
 
     def __str__(self):

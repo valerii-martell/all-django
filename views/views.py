@@ -1,5 +1,10 @@
-from django.http import HttpResponse, FileResponse, HttpResponseRedirect, \
-    HttpResponseNotAllowed, JsonResponse
+from django.http import (
+    HttpResponse,
+    FileResponse,
+    HttpResponseRedirect,
+    HttpResponseNotAllowed,
+    JsonResponse,
+)
 from django.shortcuts import render
 from django.templatetags.static import static
 
@@ -28,13 +33,14 @@ def views_index(request):
 
 
 class MyView(View):
-
     def get(self, request):
-        if request.GET.get('type') == "file":
-            return FileResponse(open(static('images/user.png')[1:], "rb+"), )
-        elif request.GET.get('type') == "json":
+        if request.GET.get("type") == "file":
+            return FileResponse(
+                open(static("images/user.png")[1:], "rb+"),
+            )
+        elif request.GET.get("type") == "json":
             return JsonResponse({i: i + i for i in range(1, 20)}, safe=False)
-        elif request.GET.get('type') == "redirect":
+        elif request.GET.get("type") == "redirect":
             return HttpResponseRedirect("https://www.google.com")
         else:
             _html = """
@@ -72,8 +78,8 @@ def text(request):
 def file(request):
     # with open() as file:
     #     work with file
-    print(static('img/001.jpg'))
-    return FileResponse(open(static('images/001.jpg'), "rb+"))
+    print(static("img/001.jpg"))
+    return FileResponse(open(static("images/001.jpg"), "rb+"))
 
 
 def redirect(request):

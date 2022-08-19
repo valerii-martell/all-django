@@ -6,4 +6,4 @@ from django.views.generic import FormView
 
 
 class Index(TemplateView):
-    template_name = 'custom_admin_index.html'
+    template_name = "custom_admin_index.html"

@@ -2,15 +2,16 @@ class MySQLDBRouter(object):
     """
     A router to control all database operations on models in some applications.
     """
+
     # router_models = [GameModel, GamerModel, GamerLibraryModel]
-    route_app_labels = {'graphql_api'}
+    route_app_labels = {"graphql_api"}
 
     def db_for_read(self, model, **hints):
         """
         Attempts to read models from mysql.
         """
         if model._meta.app_label in self.route_app_labels:
-            return 'mysql_db'
+            return "mysql_db"
         # if model in self.router_models:
         #     return 'mysql_db'
         return None
@@ -20,7 +21,7 @@ class MySQLDBRouter(object):
         Attempts to write models go to mysql.
         """
         if model._meta.app_label in self.route_app_labels:
-            return 'mysql_db'
+            return "mysql_db"
         # if model in self.router_models:
         #     return 'mysql_db'
         return None
@@ -31,8 +32,8 @@ class MySQLDBRouter(object):
         involved.
         """
         if (
-                obj1._meta.app_label in self.route_app_labels or
-                obj2._meta.app_label in self.route_app_labels
+            obj1._meta.app_label in self.route_app_labels
+            or obj2._meta.app_label in self.route_app_labels
         ):
             return True
         return None
@@ -43,5 +44,5 @@ class MySQLDBRouter(object):
         'mysql' database.
         """
         if app_label in self.route_app_labels:
-            return db == 'mysql_db'
+            return db == "mysql_db"
         return None

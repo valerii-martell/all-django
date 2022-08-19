@@ -12,16 +12,32 @@ admin.site.register(Car)
 class ApiClientAdmin(UserAdmin):
     models = ApiClient
     # ordering = ['email']
-    ordering = ['username']
+    ordering = ["username"]
     list_display = (
-        'username', 'email', 'first_name', 'last_name', 'is_staff', 'is_superuser')
+        "username",
+        "email",
+        "first_name",
+        "last_name",
+        "is_staff",
+        "is_superuser",
+    )
     fieldsets = (
-        (None, {'fields': ('password',)}),
-        (_('Personal info'), {'fields': ('username', 'first_name', 'last_name', 'email')}),
-        (_('Permissions'), {
-            'fields': ('is_active', 'is_staff', 'is_superuser',),
-        }),
-        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+        (None, {"fields": ("password",)}),
+        (
+            _("Personal info"),
+            {"fields": ("username", "first_name", "last_name", "email")},
+        ),
+        (
+            _("Permissions"),
+            {
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                ),
+            },
+        ),
+        (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
 
 

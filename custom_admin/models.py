@@ -38,7 +38,7 @@ class Item(models.Model):
     promo = models.ManyToManyField(Promo)
 
     def __str__(self):
-        return f'{self.brand_name} {self.model}'
+        return f"{self.brand_name} {self.model}"
 
 
 class Notebook(Item):
@@ -49,7 +49,7 @@ class Notebook(Item):
 
 
 class Dishwasher(Item):
-    energy_saving_class = models.CharField(max_length=2, default='A+')
+    energy_saving_class = models.CharField(max_length=2, default="A+")
     power = models.IntegerField(default=0)
     width = models.FloatField()
     height = models.FloatField()

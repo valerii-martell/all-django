@@ -10,24 +10,23 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('auth', '0012_alter_user_first_name_max_length'),
+        ("auth", "0012_alter_user_first_name_max_length"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Person',
-            fields=[
-            ],
+            name="Person",
+            fields=[],
             options={
-                'ordering': ('first_name',),
-                'proxy': True,
-                'indexes': [],
-                'constraints': [],
+                "ordering": ("first_name",),
+                "proxy": True,
+                "indexes": [],
+                "constraints": [],
             },
-            bases=('auth.user',),
+            bases=("auth.user",),
             managers=[
-                ('people', django.db.models.manager.Manager()),
-                ('objects', django.contrib.auth.models.UserManager()),
+                ("people", django.db.models.manager.Manager()),
+                ("objects", django.contrib.auth.models.UserManager()),
             ],
         ),
     ]

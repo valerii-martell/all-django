@@ -10,7 +10,7 @@ class MakeType(DjangoObjectType):
         model = Make
         fields = ("id", "name")
         # filter_fields = ("name", "id")
-        filter_fields = {'name': ['exact', 'icontains', 'istartswith']}
+        filter_fields = {"name": ["exact", "icontains", "istartswith"]}
         interfaces = (graphene.relay.Node,)
 
 
@@ -29,4 +29,3 @@ class CarType(DjangoObjectType):
 class UserType(DjangoObjectType):
     class Meta:
         model = get_user_model()
-

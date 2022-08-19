@@ -7,41 +7,71 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('orm', '0001_initial'),
+        ("orm", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='GameModel',
+            name="GameModel",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=64)),
-                ('platform', models.CharField(max_length=64)),
-                ('year', models.DateField()),
-                ('genre', models.CharField(max_length=64)),
-                ('publisher', models.CharField(max_length=64)),
-                ('na_sales', models.FloatField()),
-                ('eu_sales', models.FloatField()),
-                ('jp_sales', models.FloatField()),
-                ('other_sales', models.FloatField()),
-                ('global_sales', models.FloatField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=64)),
+                ("platform", models.CharField(max_length=64)),
+                ("year", models.DateField()),
+                ("genre", models.CharField(max_length=64)),
+                ("publisher", models.CharField(max_length=64)),
+                ("na_sales", models.FloatField()),
+                ("eu_sales", models.FloatField()),
+                ("jp_sales", models.FloatField()),
+                ("other_sales", models.FloatField()),
+                ("global_sales", models.FloatField()),
             ],
         ),
         migrations.CreateModel(
-            name='GamerModel',
+            name="GamerModel",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nickname', models.CharField(max_length=32)),
-                ('email', models.EmailField(max_length=254)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nickname", models.CharField(max_length=32)),
+                ("email", models.EmailField(max_length=254)),
             ],
         ),
         migrations.CreateModel(
-            name='GamerLibraryModel',
+            name="GamerLibraryModel",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('size', models.IntegerField()),
-                ('game', models.ManyToManyField(to='orm.gamemodel')),
-                ('gamer', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='orm.gamermodel')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("size", models.IntegerField()),
+                ("game", models.ManyToManyField(to="orm.gamemodel")),
+                (
+                    "gamer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="orm.gamermodel",
+                    ),
+                ),
             ],
         ),
     ]

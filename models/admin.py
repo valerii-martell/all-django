@@ -19,8 +19,8 @@ class AuthorAdmin(admin.ModelAdmin):
     # list_display = ['name' , 'surname']
     list_display = [field.name for field in models.Author._meta.fields]
     # exclude = ["name"] # hide mentioned fields
-    fields = ["name", 'surname']  # show mentioned fields
-    list_filter = ['name']
+    fields = ["name", "surname"]  # show mentioned fields
+    list_filter = ["name"]
     # search_fields = ['name' , 'surname']
     search_fields = [field.name for field in models.Author._meta.fields]
 

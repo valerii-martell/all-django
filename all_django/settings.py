@@ -27,10 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
 ALLOWED_HOSTS = []
 
@@ -40,94 +40,92 @@ INSTALLED_APPS = [
     # 'grappelli',
     # 'django_admin_index',
     # 'custom_admin.apps.SuitConfig',
-    'custom_admin',
-    'channels',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'drf_yasg',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'durationwidget',
-    'phone_field',
-    'graphene_django',
-    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
-    'django_celery_results',
-    'django_celery_beat',
-    'session_cleanup',
-    'django_hosts',
-    'index',
-    'smoke',
-    'routing',
-    'views',
-    'templates',
-    'models',
-    'forms',
-    'orm',
-    'authentication',
-    'ajax',
-    'api',
-    'security',
-    'custom_user',
+    "custom_admin",
+    "channels",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "drf_yasg",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "durationwidget",
+    "phone_field",
+    "graphene_django",
+    "graphql_jwt.refresh_token.apps.RefreshTokenConfig",
+    "django_celery_results",
+    "django_celery_beat",
+    "session_cleanup",
+    "django_hosts",
+    "index",
+    "smoke",
+    "routing",
+    "views",
+    "templates",
+    "models",
+    "forms",
+    "orm",
+    "authentication",
+    "ajax",
+    "api",
+    "security",
+    "custom_user",
     # 'custom_admin',
-    'frontend',
-    'emails',
-    'graphql_api',
-    'celery_tasks',
-    'channels_app'
+    "frontend",
+    "emails",
+    "graphql_api",
+    "celery_tasks",
+    "channels_app",
 ]
 
 # AUTH_USER_MODEL = 'graphql_api.ApiClient'
 
 AUTHENTICATION_BACKENDS = [
-    'graphql_jwt.backends.JSONWebTokenBackend',
-    'django.contrib.auth.backends.ModelBackend'
+    "graphql_jwt.backends.JSONWebTokenBackend",
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 GRAPHENE = {
-    'SCHEMA': 'all_django.schema.schema',
-    'MIDDLEWARE': [
-        'graphql_jwt.middleware.JSONWebTokenMiddleware'
-    ]
+    "SCHEMA": "all_django.schema.schema",
+    "MIDDLEWARE": ["graphql_jwt.middleware.JSONWebTokenMiddleware"],
 }
 
 GRAPHQL_JWT = {
-    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
-    'JWT_VERIFY_EXPIRATION': True,
-    'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
-    'JWT_EXPIRATION_DELTA': timedelta(days=1),
-    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
-    'JWT_SECRET_KEY': SECRET_KEY,
-    'JWT_ALGORITHM': 'HS256',
+    "JWT_AUTH_HEADER_PREFIX": "Bearer",
+    "JWT_VERIFY_EXPIRATION": True,
+    "JWT_LONG_RUNNING_REFRESH_TOKEN": True,
+    "JWT_EXPIRATION_DELTA": timedelta(days=1),
+    "JWT_REFRESH_EXPIRATION_DELTA": timedelta(days=7),
+    "JWT_SECRET_KEY": SECRET_KEY,
+    "JWT_ALGORITHM": "HS256",
 }
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
     ],
     # 'DEFAULT_PERMISSION_CLASSES': (
     #     'rest_framework.permissions.IsAuthenticated',)
 }
 
 MIDDLEWARE = [
-    'django_hosts.middleware.HostsRequestMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_hosts.middleware.HostsResponseMiddleware',
+    "django_hosts.middleware.HostsRequestMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_hosts.middleware.HostsResponseMiddleware",
 ]
 
-DEFAULT_HOST = 'www'
-ROOT_HOSTCONF = 'routing.hosts'
+DEFAULT_HOST = "www"
+ROOT_HOSTCONF = "routing.hosts"
 # import socket
 # try:
 #     PARENT_HOST = socket.gethostname()
@@ -138,9 +136,9 @@ ROOT_HOSTCONF = 'routing.hosts'
 #
 # current_site = Site.objects.get_current()
 # PARENT_HOST = current_site.domain
-PARENT_HOST = 'localhost:8000'
+PARENT_HOST = "localhost:8000"
 
-ROOT_URLCONF = 'all_django.urls'
+ROOT_URLCONF = "all_django.urls"
 
 # 1 hour = 3600 sec
 SESSION_COOKIE_AGE = 3600
@@ -150,13 +148,13 @@ SESSION_COOKIE_AGE = 3600
 # CELERY_RESULT_BACKEND = 'redis'
 
 # RabbitMQ
-CELERY_RESULT_BACKEND = 'django-db'
-CELERY_CACHE_BACKEND = 'django-cache'
-CELERY_BROKER_URL = 'amqp://localhost'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Europe/Amsterdam'
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_CACHE_BACKEND = "django-cache"
+CELERY_BROKER_URL = "amqp://localhost"
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = "Europe/Amsterdam"
 
 # celery -A all_django worker -l DEBUG/INFO
 # from celery_tasks.tasks import fibon
@@ -170,7 +168,7 @@ CELERY_BEAT_SCHEDULE = {
     "weather": {
         "task": "celery_tasks.tasks.fetch_weather",
         "schedule": 20.0,
-        'session_cleanup': nightly_schedule
+        "session_cleanup": nightly_schedule,
     },
 }
 
@@ -179,23 +177,23 @@ CELERY_BEAT_SCHEDULE = {
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
                 # 'django_admin_index.context_processors.dashboard',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
     {
-        'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': [BASE_DIR / 'templates/templates'],
-        'APP_DIRS': True,
+        "BACKEND": "django.template.backends.jinja2.Jinja2",
+        "DIRS": [BASE_DIR / "templates/templates"],
+        "APP_DIRS": True,
         # 'OPTIONS': {
         #     'environment': 'templates.jinja2.environment',
         # }
@@ -210,8 +208,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'all_django.wsgi.application'
-ASGI_APPLICATION = 'all_django.asgi.application'
+WSGI_APPLICATION = "all_django.wsgi.application"
+ASGI_APPLICATION = "all_django.asgi.application"
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 
 # LINUX
@@ -219,7 +217,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379')],
+            "hosts": [os.environ.get("REDIS_URL", "redis://127.0.0.1:6379")],
         },
     },
 }
@@ -235,32 +233,32 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 DATABASE_ROUTERS = (
-    'orm.dbrouters.PostgreSQLDBRouter',
-    'graphql_api.dbrouters.MySQLDBRouter',
+    "orm.dbrouters.PostgreSQLDBRouter",
+    "graphql_api.dbrouters.MySQLDBRouter",
 )
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     },
-    'postgresql_db': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ.get('POSTGRESQL_HOST'),
-        'NAME': os.environ.get('POSTGRESQL_DATABASE'),
-        'USER': os.environ.get('POSTGRESQL_USER'),
-        'PASSWORD': os.environ.get('POSTGRESQL_PASSWORD'),
-        'PORT': os.environ.get('POSTGRESQL_PORT'),
-        'OPTIONS': {'sslmode': 'require'},
+    "postgresql_db": {
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": os.environ.get("POSTGRESQL_HOST"),
+        "NAME": os.environ.get("POSTGRESQL_DATABASE"),
+        "USER": os.environ.get("POSTGRESQL_USER"),
+        "PASSWORD": os.environ.get("POSTGRESQL_PASSWORD"),
+        "PORT": os.environ.get("POSTGRESQL_PORT"),
+        "OPTIONS": {"sslmode": "require"},
     },
-    'mysql_db': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': os.environ.get('MYSQL_HOST'),
-        'NAME': os.environ.get('MYSQL_DATABASE'),
-        'USER': os.environ.get('MYSQL_USER'),
-        'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
-        'PORT': os.environ.get('MYSQL_PORT'),
-        'OPTIONS': {'ssl': True},
+    "mysql_db": {
+        "ENGINE": "django.db.backends.mysql",
+        "HOST": os.environ.get("MYSQL_HOST"),
+        "NAME": os.environ.get("MYSQL_DATABASE"),
+        "USER": os.environ.get("MYSQL_USER"),
+        "PASSWORD": os.environ.get("MYSQL_PASSWORD"),
+        "PORT": os.environ.get("MYSQL_PORT"),
+        "OPTIONS": {"ssl": True},
     },
 }
 
@@ -269,25 +267,25 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -296,26 +294,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')  # add STATIC_ROOT to DIRS
-]
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # add STATIC_ROOT to DIRS
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # GMAIL CONFIG
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = f"All-Django Team <{os.environ.get('EMAIL_HOST_USER')}>"  # 'TestSite Team <noreply@example.com>'
@@ -338,7 +334,10 @@ from django.utils.encoding import force_str
 from django.utils.translation import gettext, gettext_lazy
 
 django.utils.encoding.force_text = force_str
-django.utils.translation.ugettext, django.utils.translation.ugettext_lazy = gettext, gettext_lazy
+django.utils.translation.ugettext, django.utils.translation.ugettext_lazy = (
+    gettext,
+    gettext_lazy,
+)
 # Solve graphql_jwt issue with deprecated in Django 4 providing_args parameter in dispatch.Signal constructor
 # import sys
 # from graphql_jwt.signals import

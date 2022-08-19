@@ -11,18 +11,18 @@ from orm.models import Human
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
 
-'''Функция для установки сессионного ключа.
-По нему django будет определять, выполнил ли вход пользователь.'''
+"""Функция для установки сессионного ключа.
+По нему django будет определять, выполнил ли вход пользователь."""
 
 
 class MainView(TemplateView):
-    template_name = 'auth.html'
+    template_name = "auth.html"
 
     def get(self, request):
         if request.user.is_authenticated:
             humans = Human.objects.all()
             ctx = {}
-            ctx['humans'] = humans
+            ctx["humans"] = humans
             return render(request, self.template_name, ctx)
         else:
             return render(request, self.template_name, {})

@@ -33,11 +33,13 @@ def models_index(request):
 
 def create_flower(request):
     rose = Flower()
-    rose.description = "Роза является представителем семейства Разноцветных," \
-                       " рода Шиповник. Растение в большинстве случаев " \
-                       "представляет собой разветвленный кустарник, стебли" \
-                       " которого покрыты шипами, роза имеет зеленые листья" \
-                       " и большие ароматные цветы самого разного окраса"
+    rose.description = (
+        "Роза является представителем семейства Разноцветных,"
+        " рода Шиповник. Растение в большинстве случаев "
+        "представляет собой разветвленный кустарник, стебли"
+        " которого покрыты шипами, роза имеет зеленые листья"
+        " и большие ароматные цветы самого разного окраса"
+    )
     rose.wiki_page = "ссылка на википедию"
     rose.name = "Роза красная"
     rose.save()
@@ -48,16 +50,18 @@ def create_client(request):
     # with open('requirements.txt', 'r') as _file:
     #     tmp_file = _file.read()
 
-    client = Client.objects.create(**{
-        'user': User.objects.get(pk=1),
-        'second_email': 'admin@admin1.com',
-        'name': 'MyName',
-        # 'invoice': tmp_file,
-        'invoice': File(open('requirements.txt')),
-        'user_uuid': uuid4(),
-        'discount_size': Decimal("0.00052"),
-        'client_ip': "192.0.2.1.",
-    })
+    client = Client.objects.create(
+        **{
+            "user": User.objects.get(pk=1),
+            "second_email": "admin@admin1.com",
+            "name": "MyName",
+            # 'invoice': tmp_file,
+            "invoice": File(open("requirements.txt")),
+            "user_uuid": uuid4(),
+            "discount_size": Decimal("0.00052"),
+            "client_ip": "192.0.2.1.",
+        }
+    )
     return HttpResponse(client)
 
 

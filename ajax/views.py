@@ -17,7 +17,7 @@ import json
 
 
 class MainView(TemplateView):
-    template_name = 'ajax.html'
+    template_name = "ajax.html"
     human_form = HumanForm
 
     def get(self, request):
@@ -25,8 +25,8 @@ class MainView(TemplateView):
         # ctx['script'] = 'alert(5555555);'
         if request.user.is_authenticated:
             all_humans = Human.objects.all()
-            ctx['humans'] = all_humans
-            ctx['human_form'] = self.human_form
+            ctx["humans"] = all_humans
+            ctx["human_form"] = self.human_form
             return render(request, self.template_name, ctx)
         else:
             return render(request, self.template_name, ctx)
@@ -76,7 +76,7 @@ class LogoutView(TemplateView):
 
 def validate_email(request):
     if request.GET:
-        email = request.GET.get('email')
+        email = request.GET.get("email")
         is_taken = User.objects.filter(email=email).exists()
         if is_taken:
             data = {
@@ -84,47 +84,44 @@ def validate_email(request):
             }
             return JsonResponse(data)
         else:
-            return JsonResponse({'ok': "На этот почтовый адрес не было регистраций"})
+            return JsonResponse({"ok": "На этот почтовый адрес не было регистраций"})
 
 
 def show_three(request):
     first_three = Human.objects.all()[:3].values()
-    context = {
-        'elements': list(first_three)
-    }
+    context = {"elements": list(first_three)}
     return JsonResponse(context)
 
 
 def show_four(request):
     last_four = Human.objects.all()[:4].values()
 
-    context = {
-        'elements': list(last_four)
-    }
+    context = {"elements": list(last_four)}
     return JsonResponse(context)
 
 
 def is_ajax(request):
-    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+    return request.META.get("HTTP_X_REQUESTED_WITH") == "XMLHttpRequest"
 
 
 @csrf_exempt
 def add_human(request):
     if request.POST:
         if is_ajax(request):
-            name = request.POST['name']
-            surname = request.POST['surname']
-            birth = request.POST['birth']
-            company = request.POST['company']
-            position = request.POST['position']
-            language = request.POST['language']
-            salary = request.POST['salary']
-            human = Human.objects.create(name=name,
-                                         surname=surname,
-                                         birth=birth,
-                                         company=company,
-                                         position=position,
-                                         language=language,
-                                         salary=salary
-                                         )
+            name = request.POST["name"]
+            surname = request.POST["surname"]
+            birth = request.POST["birth"]
+            company = request.POST["company"]
+            position = request.POST["position"]
+            language = request.POST["language"]
+            salary = request.POST["salary"]
+            human = Human.objects.create(
+                name=name,
+                surname=surname,
+                birth=birth,
+                company=company,
+                position=position,
+                language=language,
+                salary=salary,
+            )
             return JsonResponse(human.dict())

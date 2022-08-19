@@ -1,5 +1,10 @@
-from django.http import HttpResponse, FileResponse, HttpResponseRedirect, \
-    HttpResponseNotAllowed, JsonResponse
+from django.http import (
+    HttpResponse,
+    FileResponse,
+    HttpResponseRedirect,
+    HttpResponseNotAllowed,
+    JsonResponse,
+)
 from django.shortcuts import render
 from django.templatetags.static import static
 from django.views import View
@@ -7,7 +12,7 @@ from django.template import loader
 
 
 def routing_index(request):
-    return render(request, 'routing_index.html', {})
+    return render(request, "routing_index.html", {})
 
 
 def http_redirect(request):
@@ -19,11 +24,13 @@ def file_response(request):
     # with open() as file:
     #     work with file
     # print(static('images/001.jpg')[1:])
-    return FileResponse(open(static('images/001.jpg')[1:], "rb+"))
+    return FileResponse(open(static("images/001.jpg")[1:], "rb+"))
 
 
 def function(request, year=1111, month=11, day=1):
-    return HttpResponse("Parameters {year}/{month}/{day}".format(year=year, month=month, day=day))
+    return HttpResponse(
+        "Parameters {year}/{month}/{day}".format(year=year, month=month, day=day)
+    )
 
 
 def render_html(request):
@@ -44,7 +51,7 @@ def render_html(request):
 
 
 def render_template(request):
-    return render(request, 'routing/main.html', {})
+    return render(request, "routing/main.html", {})
 
 
 def request_properties(request):
@@ -63,7 +70,9 @@ def request_properties(request):
             <p>Is secure (hhtps): {3}</p>,
         </body>
     </html>
-    """.format(request.path, request.get_full_path(), request.get_host(), request.is_secure())
+    """.format(
+        request.path, request.get_full_path(), request.get_host(), request.is_secure()
+    )
 
     return HttpResponse(_html)
 
@@ -86,7 +95,7 @@ def json(request):
 
 
 def api(request):
-    return JsonResponse({'subdomain': 'api'}, safe=False)
+    return JsonResponse({"subdomain": "api"}, safe=False)
 
 
 def beta(request):

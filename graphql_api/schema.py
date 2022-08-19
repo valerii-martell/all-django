@@ -22,7 +22,7 @@ class Query(graphene.ObjectType):
     cars = graphene.List(CarType, make=graphene.String())  # required=True)
 
     def resolve_model(self, info, **kwargs):
-        id = kwargs.get('id', None)
+        id = kwargs.get("id", None)
 
         try:
             return Model.objects.get(id=id)
@@ -30,7 +30,7 @@ class Query(graphene.ObjectType):
             return None
 
     def resolve_make(self, info, **kwargs):
-        id = kwargs.get('id', None)
+        id = kwargs.get("id", None)
 
         try:
             return Make.objects.get(id=id)
@@ -38,7 +38,7 @@ class Query(graphene.ObjectType):
             return None
 
     def resolve_car(self, info, **kwargs):
-        id = kwargs.get('id', None)
+        id = kwargs.get("id", None)
 
         try:
             return Car.objects.get(id=id)
@@ -61,14 +61,14 @@ class Query(graphene.ObjectType):
         user = info.context.user
 
         if user.is_anonymous:
-            raise Exception('Authentication Failure: Your must be signed in')
+            raise Exception("Authentication Failure: Your must be signed in")
         return user
 
     def resolve_api_clients(self, info):
         user = info.context.user
 
         if user.is_anonymous:
-            raise Exception('Authentication Failure: Your must be signed in')
+            raise Exception("Authentication Failure: Your must be signed in")
         if not user.is_staff:
-            raise Exception('Authentication Failure: Must be Manager')
+            raise Exception("Authentication Failure: Must be Manager")
         return get_user_model().objects.all()
