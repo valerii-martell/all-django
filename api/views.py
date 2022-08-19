@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
 from rest_framework import viewsets, permissions
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
@@ -28,21 +30,36 @@ def api_index(request):
         <body>
             <h1>Django REST Framework index:</h1>
             <p><a href="/">001. Back to main index</a></p>
-            <p><a href="/api/function">002. Function-based API view</a></p>
-            <p><a href="/api/class">003. CLass-based API view</a></p>
-            <p><a href="/api/game">004. API ViewSet - games (default)</a></p>
-            <p><a href="/api/gamer">005. API ViewSet - gamers (default)</a></p>
-            <p><a href="/api/view-set">006. API ViewSet - list, retrieve all or by id</a></p>
-            <p><a href="/api/create">007. Generic API view - create</a></p>
-            <p><a href="/api/retrieve/1">008. Generic API view - retrieve by id</a></p>
-            <p><a href="/api/retrieve-update/1">009. Generic API view - retrieve and update by id</a></p>
-            <p><a href="/api/register">010. API new user register - function-based view + token</a></p>
-            <p><a href="/api/login">011. API user login - generic API view</a></p>
+            <p><a href="/api/docs">002. Swagger UI API Docs</a></p>
+            <p><a href="/api/function">003. Function-based API view</a></p>
+            <p><a href="/api/class">004. CLass-based API view</a></p>
+            <p><a href="/api/game">005. API ViewSet - games (default)</a></p>
+            <p><a href="/api/gamer">006. API ViewSet - gamers (default)</a></p>
+            <p><a href="/api/view-set">007. API ViewSet - list, retrieve all or by id</a></p>
+            <p><a href="/api/create">008. Generic API view - create</a></p>
+            <p><a href="/api/retrieve/1">009. Generic API view - retrieve by id</a></p>
+            <p><a href="/api/retrieve-update/1">010. Generic API view - retrieve and update by id</a></p>
+            <p><a href="/api/register">011. API new user register - function-based view + token</a></p>
+            <p><a href="/api/login">012. API user login - generic API view</a></p>
         </body>
     </html>
     """
 
     return HttpResponse(_html)
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="All Django API Swagger",
+        default_version='v1',
+        description="All Django - Swagger API UI Docs",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="valerii.martell@gmail.com"),
+        license=openapi.License(name="MIT License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 
 
 class GameViewSet(viewsets.ModelViewSet):

@@ -20,7 +20,7 @@ def index(request):
             <p><a href="/orm">007. Django ORM</a></p>
             <p><a href="/authentication">008. Authentication</a></p>
             <p><a href="/ajax">009. AJAX</a></p>
-            <p><a href="/api">010. API via Django REST Framework</a></p>
+            <p><a href="/api">010. API via Django REST Framework (with Swagger UI Docs)</a></p>
             <p><a href="/security">011. Security</a></p>
             <p><a href="/custom-user">012. Custom user models</a></p>
             <p><a href="/custom-admin">013. Custom Admin panel</a></p>
