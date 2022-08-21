@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir /app
 WORKDIR /app
 # copy project
-ADD . /app
+ADD . /app/
 
 # install dependencies
 RUN pip install --upgrade pip
@@ -18,5 +18,5 @@ RUN apk update \
 # COPY ./requirements.txt .
 RUN pip install -r requirements.txt --no-deps --no-dependencies
 EXPOSE 8000
-CMD python manage.py wait_for_db && python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+#CMD python manage.py wait_for_db && python manage.py migrate && python manage.py runserver 0.0.0.0:8000
 
