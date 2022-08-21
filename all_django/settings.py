@@ -17,6 +17,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from session_cleanup.settings import nightly_schedule
 
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'all_django.settings')
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
@@ -27,12 +29,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "foo")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
-
-ALLOWED_HOSTS = []
+# DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
+DEBUG = int(os.environ.get("DEBUG", default=0))
+# ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS",
+#                                "127.0.0.1 localhost 0.0.0.0").split(" ")
+ALLOWED_HOSTS = ["*"] # ['0.0.0.0', '127.0.0.1'] # "*"
 
 # Application definition
 
@@ -232,34 +236,42 @@ CHANNEL_LAYERS = {
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-DATABASE_ROUTERS = (
-    "orm.dbrouters.PostgreSQLDBRouter",
-    "graphql_api.dbrouters.MySQLDBRouter",
-)
+# DATABASE_ROUTERS = (
+#     "orm.dbrouters.PostgreSQLDBRouter",
+#     "graphql_api.dbrouters.MySQLDBRouter",
+# )
 
 DATABASES = {
+    # "default": {
+    #     "ENGINE": "django.db.backends.sqlite3",
+    #     "NAME": BASE_DIR / "db.sqlite3",
+    # },
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": os.environ.get("SQL_ENGINE"), #, "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_DATABASE"), #, BASE_DIR / "db.sqlite3"),
+        "USER": os.environ.get("SQL_USER", "user"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+        "HOST": os.environ.get("SQL_HOST", "localhost"),
+        "PORT": os.environ.get("SQL_PORT", "5432"),
     },
-    "postgresql_db": {
-        "ENGINE": "django.db.backends.postgresql",
-        "HOST": os.environ.get("POSTGRESQL_HOST"),
-        "NAME": os.environ.get("POSTGRESQL_DATABASE"),
-        "USER": os.environ.get("POSTGRESQL_USER"),
-        "PASSWORD": os.environ.get("POSTGRESQL_PASSWORD"),
-        "PORT": os.environ.get("POSTGRESQL_PORT"),
-        "OPTIONS": {"sslmode": "require"},
-    },
-    "mysql_db": {
-        "ENGINE": "django.db.backends.mysql",
-        "HOST": os.environ.get("MYSQL_HOST"),
-        "NAME": os.environ.get("MYSQL_DATABASE"),
-        "USER": os.environ.get("MYSQL_USER"),
-        "PASSWORD": os.environ.get("MYSQL_PASSWORD"),
-        "PORT": os.environ.get("MYSQL_PORT"),
-        "OPTIONS": {"ssl": True},
-    },
+    # "postgresql_db": {
+    #     "ENGINE": "django.db.backends.postgresql",
+    #     "HOST": os.environ.get("POSTGRESQL_HOST"),
+    #     "NAME": os.environ.get("POSTGRESQL_DATABASE"),
+    #     "USER": os.environ.get("POSTGRESQL_USER"),
+    #     "PASSWORD": os.environ.get("POSTGRESQL_PASSWORD"),
+    #     "PORT": os.environ.get("POSTGRESQL_PORT"),
+    #     "OPTIONS": {"sslmode": "require"},
+    # },
+    # "mysql_db": {
+    #     "ENGINE": "django.db.backends.mysql",
+    #     "HOST": os.environ.get("MYSQL_HOST"),
+    #     "NAME": os.environ.get("MYSQL_DATABASE"),
+    #     "USER": os.environ.get("MYSQL_USER"),
+    #     "PASSWORD": os.environ.get("MYSQL_PASSWORD"),
+    #     "PORT": os.environ.get("MYSQL_PORT"),
+    #     "OPTIONS": {"ssl": True},
+    # },
 }
 
 # Password validation
@@ -295,7 +307,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # add STATIC_ROOT to DIRS
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # add STATIC_ROOT to DIRS
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")

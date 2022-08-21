@@ -25,10 +25,10 @@ def security_test(request):
     my_variable_sql = (
         request.POST.get("user_input_sql")
         if request.POST.get("user_input_sql")
-        == "SELECT * FROM main.orm_gamemodel LIMIT 1;"
+        == "SELECT * FROM public.orm_gamemodel LIMIT 1;"
         else None
     )
-    # TODO: public for postgresql
+    # TODO: public for postgresql, main for sqllite
 
     try:
         result_sql = GameModel.objects.raw(my_variable_sql)
