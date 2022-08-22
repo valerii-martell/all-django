@@ -26,5 +26,5 @@ All considered topics are implemented within the set of separated applications. 
  - Testing - Django tests based on pytest. Unittests, mocks, abstract tests, API tests, GraphQL tests via graphene
  - Security - examples of different attacks (XSS, SQL-injection, CSRF) and protection against them
  - Containerization - dockerizing Django application using Docker and docker-compose
- - Deploy - Nginx/Apache2, Let's Encrypt, Gunicorn and Uvicorn for ASGI Channels, AWS EC2/EBT (currently suspended).
+ - Deploy - Nginx/Apache2, Let's Encrypt, Gunicorn and Uvicorn for ASGI Channels, AWS EC2/EBT (currently suspended)
 
