@@ -19,9 +19,16 @@ def index(request):
             <p><a href="/forms">006. Forms</a></p>
             <p><a href="/orm">007. Django ORM</a></p>
             <p><a href="/authentication">008. Authentication</a></p>
-            <p><a href="/ajax">009. Ajax</a></p>
-            <p><a href="/api">010. API</a></p>
+            <p><a href="/ajax">009. AJAX</a></p>
+            <p><a href="/api">010. API via Django REST Framework (with Swagger UI Docs)</a></p>
             <p><a href="/security">011. Security</a></p>
+            <p><a href="/custom-user">012. Custom user models</a></p>
+            <p><a href="/custom-admin">013. Custom Admin panel</a></p>
+            <p><a href="/frontend">014. Frontend</a></p>
+            <p><a href="/emails">015. Emails</a></p>
+            <p><a href="/graphql">016. GraphQL</a></p>
+            <p><a href="/celery">017. Celery (with either Redis/RabbitMQ and Sessions)</a></p>
+            <p><a href="/channels">018. Django channels (with Websockets and Redis)</a></p>
         </body>
     </html>
     """

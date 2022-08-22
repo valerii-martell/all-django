@@ -1,0 +1,10 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+
+{% block content %}
+    {% for element in users %}
+        <p>{{ element }}</p>
+        <p>{{ element.email }}</p>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'main/index.html' %}
+
+{% block content %}
+    <p>{{ object.email }}</p>
+    <p>Username: {{ object.username }}</p>
+    <p>Is active: {{ object.is_active }}</p>
+    <p>Date: {{ object.date_joined }}</p>
+{% endblock %}

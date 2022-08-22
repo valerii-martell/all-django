@@ -1,0 +1,62 @@
+    header
+        {
+            background : darkgreen;
+            height : 200px;
+        }
+        header img
+        {
+
+            float: left;
+        }
+        nav a {
+            color: white;
+            font-size: 28px;
+            margin-right: 60px;
+        }
+        nav {
+            padding-top:80px;
+
+        }
+        aside {
+
+            background: #f0f0f0;
+            padding: 10px;
+            width: 200px;
+            float: right;
+    }
+    ul li
+    {
+        margin-top:15px;
+    }
+
+    footer
+    {
+        display  :block;
+        position : absolute;
+        top: 590px;
+        background : black ;
+        color: white;
+        width : 100%;
+    }
+    div
+    {
+        font-size: 24px;
+    }
+    /*.column {
+        float: left;
+        width: 50%;
+    }
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }*/
+
+    .row {
+        display: flex;
+    }
+
+    .column {
+        flex: 25%;
+    }

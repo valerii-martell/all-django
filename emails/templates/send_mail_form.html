@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Django - send mail</title>
+    <style>
+        ul.errorlist {
+            list-style: none;
+        }
+
+        ul.errorlist li {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+{% block form %}
+    {% if result_ok %}
+        <script>
+            alert({{result_ok}});
+        </script>
+    {% endif %}
+    <h1>Send email example</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ mail_form.as_p }}
+        <input type="submit" value="Submit"/>
+    </form>
+        <!--{% if erorrs %}-->
+        <!--{{errors}}-->
+        <!--{% endif %}-->
+    <hr>
+{% endblock %}
+
+
+</body>
+</html>

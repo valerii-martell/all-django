@@ -13,21 +13,32 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from all_django import settings
+
 urlpatterns = [
-    path('', include("index.urls")),
-    path('smoke/', include("smoke.urls")),
-    path('routing/', include("routing.urls")),
-    path('views/', include("views.urls")),
-    path('templates/', include("templates.urls")),
-    path('models/', include("models.urls")),
-    path('forms/', include("forms.urls")),
-    path('orm/', include("orm.urls")),
-    path('authentication/', include("authentication.urls")),
-    path('ajax/', include("ajax.urls")),
-    path('api/', include("api.urls")),
-    path('security/', include("security.urls")),
-    path('admin/', admin.site.urls),
-]
+    # path('grappelli/', include('grappelli.urls')),
+    path("", include("index.urls")),
+    path("smoke/", include("smoke.urls")),
+    path("routing/", include("routing.urls")),
+    path("views/", include("views.urls")),
+    path("templates/", include("templates.urls")),
+    path("models/", include("models.urls")),
+    path("forms/", include("forms.urls")),
+    path("orm/", include("orm.urls")),
+    path("authentication/", include("authentication.urls")),
+    path("ajax/", include("ajax.urls")),
+    path("api/", include("api.urls")),
+    path("security/", include("security.urls")),
+    path("custom-user/", include("custom_user.urls")),
+    path("custom-admin/", include("custom_admin.urls")),
+    path("frontend/", include("frontend.urls")),
+    path("emails/", include("emails.urls")),
+    path("graphql/", include("graphql_api.urls")),
+    path("celery/", include("celery_tasks.urls")),
+    path("channels/", include("channels_app.urls")),
+    path("admin/", admin.site.urls),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

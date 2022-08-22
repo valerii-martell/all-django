@@ -1,0 +1,19 @@
+{% load hosts %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Django - Channels</title>
+</head>
+<body>
+<h1>Channels index:</h1>
+<p><a href="/">001. Back to main index</a></p>
+<p><a href="/channels/chat">002. Live chat with generic rooms and (dis)likes system (auth required)</a></p>
+<br/>
+{% if user.is_authenticated  %}
+<a href="/channels/logout">Logout ({{user.username}})</a>
+{% else %}
+<a href="/channels/register">Sign up</a> or <a href="/channels/login">Login</a>
+{% endif %}
+</body>
+</html>
