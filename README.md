@@ -4,7 +4,7 @@
 
 http://all-django-dev.us-east-1.elasticbeanstalk.com/ (currently suspended)
 
-An index project that contains a set of examples of implementation of various functionalities of a modern web service on Django. Can be used as a cheat sheet and as a basis for building a course for teaching web backend development using Django as an example.
+An index project that contains a set of examples of implementation of various functionalities of a modern web service in Django. Can be used as a cheat sheet and as a basis for building a course for teaching web backend development using Django as an example.
 All considered topics are implemented within the set of separated applications. Among them:
 
  - Smoke - Classical smoke page
